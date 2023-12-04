@@ -12,9 +12,9 @@ namespace TheatreBookingSystem_MVC.Models
 		public string? Email { get; set; }
         public string? Password { get; set; }
 		public string? Phone { get; set; }
-        public bool? IsAdmin { get; set; }
+		public bool? IsAdmin { get; set; }
 
-		// Tutaj sama lista biletów i czy jest adminem? reszta do ViewModel?
+		// Leave only ticket list and IsAdmin? Rest in view model?
 
 	}
 }

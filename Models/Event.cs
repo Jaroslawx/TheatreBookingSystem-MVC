@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TheatreBookingSystem_MVC.Data.Enum;
 
 namespace TheatreBookingSystem_MVC.Models
 {
@@ -8,7 +9,7 @@ namespace TheatreBookingSystem_MVC.Models
         [Key]
         public int? Id { get; set; }
 		public string? Name { get; set; }
-        public string? Type { get; set; }
+        public EventType EventType { get; set; }
 		public DateTime? Date { get; set; }
 		public DateTime? Time { get; set; }
         [ForeignKey("Room")]

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TheatreBookingSystem_MVC.Data.Enum;
 
 namespace TheatreBookingSystem_MVC.Models
 {
@@ -9,7 +10,7 @@ namespace TheatreBookingSystem_MVC.Models
         public int? Id { get; set; }
 		public int? Row { get; set; }
 		public int? Seat { get; set; }
-        public string? Type { get; set; }
+        public TicketType TicketType { get; set; }
         [ForeignKey("Event")]
         public int? EventId { get; set; }
         public Event? Event { get; set; }
