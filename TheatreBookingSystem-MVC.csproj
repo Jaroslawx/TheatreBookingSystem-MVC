@@ -7,4 +7,10 @@
     <RootNamespace>TheatreBookingSystem_MVC</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
+
 </Project>
