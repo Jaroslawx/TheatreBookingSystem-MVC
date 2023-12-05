@@ -11,7 +11,7 @@ namespace TheatreBookingSystem_MVC.Models
 		public string? Category { get; set; }
 		public int? Seats { get; set; }
 		[ForeignKey("Building")]
-		public string? BuildingId { get; set; }
+		public int? BuildingId { get; set; }
 		public Building? Building { get; set; }
 	}
 }
