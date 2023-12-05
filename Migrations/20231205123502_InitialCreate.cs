@@ -78,7 +78,6 @@ namespace TheatreBookingSystem_MVC.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<int>(type: "int", nullable: true),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Seats = table.Column<int>(type: "int", nullable: true),
                     BuildingId = table.Column<int>(type: "int", nullable: true)
                 },

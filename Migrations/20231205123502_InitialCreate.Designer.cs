@@ -12,7 +12,7 @@ using TheatreBookingSystem_MVC.Data;
 namespace TheatreBookingSystem_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231205103355_InitialCreate")]
+    [Migration("20231205123502_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -231,9 +231,6 @@ namespace TheatreBookingSystem_MVC.Migrations
 
                     b.Property<int?>("BuildingId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Number")
                         .HasColumnType("int");

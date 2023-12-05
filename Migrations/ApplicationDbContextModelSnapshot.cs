@@ -229,9 +229,6 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<int?>("BuildingId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("Number")
                         .HasColumnType("int");
 
