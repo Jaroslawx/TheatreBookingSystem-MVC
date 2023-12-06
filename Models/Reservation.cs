@@ -8,7 +8,7 @@ namespace TheatreBookingSystem_MVC.Models
         [Key]
         public int? Id { get; set; }
 		public DateTime? Date { get; set; }
-		public DateTime? Time { get; set; }
+        public TimeSpan? Duration { get; set; }
         [ForeignKey("Room")]
         public int? RoomId { get; set; }
         public Room? Room { get; set; }
@@ -16,6 +16,5 @@ namespace TheatreBookingSystem_MVC.Models
         public int? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
 
-        // Date and Time string or DateTime?
     }
 }

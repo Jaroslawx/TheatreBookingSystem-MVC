@@ -5,6 +5,7 @@ namespace TheatreBookingSystem_MVC.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        // TODO: Add convert TimeSpan into ticks
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             
