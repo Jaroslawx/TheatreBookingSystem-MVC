@@ -16,5 +16,11 @@ namespace TheatreBookingSystem_MVC.Controllers
             List<Event> events = _context.Events.ToList();
             return View(events);
         }
+
+        public IActionResult Detail(int id)
+        { 
+            Event event = _context.Events.Include(r => r.Room).FirstOrDefault(e => e.Id == id);)
+            return View(event);
+        }
     }
 }
