@@ -170,6 +170,12 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan?>("Duration")
+                        .HasColumnType("time");
+
                     b.Property<int>("EventType")
                         .HasColumnType("int");
 
@@ -178,9 +184,6 @@ namespace TheatreBookingSystem_MVC.Migrations
 
                     b.Property<int?>("RoomId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Time")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -203,11 +206,11 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<TimeSpan?>("Duration")
+                        .HasColumnType("time");
+
                     b.Property<int?>("RoomId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Time")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

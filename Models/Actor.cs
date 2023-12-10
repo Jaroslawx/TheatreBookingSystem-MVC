@@ -9,7 +9,5 @@ namespace TheatreBookingSystem_MVC.Models
 		public string? Name { get; set; }
 		public string? Surname { get; set; }
 
-
-
 	}
 }

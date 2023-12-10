@@ -21,15 +21,15 @@ namespace TheatreBookingSystem_MVC.Data
                     {
                         new Building()
                         {
-                            Name = "Building 1",
-                            Street = "Wiejska 5",
-                            City = "Bialystok"
+                            Name = "House of Culture Building 1",
+                            Street = "Freedom St. 3",
+                            City = "Warsaw"
                          },
                         new Building()
                         {
-                            Name = "Building 2",
-                            Street = "Wiejska 6",
-                            City = "Bialystok"
+                            Name = "House of Culture Building 2",
+                            Street = "Freedom St. 4",
+                            City = "Warsaw"
                         }
                     });
                     context.SaveChanges();
@@ -40,28 +40,41 @@ namespace TheatreBookingSystem_MVC.Data
                     {
                         new Room
                         {
-                            Number = 101,
-                            Seats = 50,
-                            BuildingId = 1
-                        },
-                        new Room
-                        {
-                            Number = 102,
-                            Seats = 40,
-                            BuildingId = 1
-                        },
-                        new Room
-                        {
-                            Number = 201,
+                            Number = 8,
                             Seats = 100,
+                            BuildingId = 1
+                        },
+                        new Room
+                        {
+                            Number = 9,
+                            Seats = 85,
+                            BuildingId = 1
+                        },
+                        new Room
+                        {
+                            Number = 10,
+                            Seats = 30,
+                            BuildingId = 1
+                        },
+                        new Room
+                        {
+                            Number = 8,
+                            Seats = 110,
                             BuildingId = 2
                         },
                         new Room
                         {
-                            Number = 202,
-                            Seats = 60,
+                            Number = 9,
+                            Seats = 90,
+                            BuildingId = 2
+                        },
+                        new Room
+                        {
+                            Number = 10,
+                            Seats = 20,
                             BuildingId = 2
                         }
+
                     });
                     context.SaveChanges();
                 }
@@ -72,20 +85,50 @@ namespace TheatreBookingSystem_MVC.Data
                     {
                         new Event
                         {
-                            Name = "Concert",
-                            EventType = EventType.Concert,
+                            Name = "The Phantom of the Opera",
+                            Description = "A classic musical by Andrew Lloyd Webber",
+                            EventType = EventType.Musical,
                             Date = new DateTime(2023, 12, 13),
-                            Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(15)),
+                            Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(30)),
                             RoomId = 1
                         },
                         new Event
                         {
-                            Name = "Theatre Play",
-                            EventType = EventType.Play,
-                            Date = new DateTime(2024, 1, 10),
-                            Duration = TimeSpan.FromHours(1).Add(TimeSpan.FromMinutes(50)),
+                            Name = "Rock Concert: Legends of the 80s",
+                            Description = "An unforgettable night with iconic 80s rock hits",
+                            EventType = EventType.Concert,
+                            Date = new DateTime(2023, 12, 15),
+                            Duration = TimeSpan.FromHours(3),
                             RoomId = 2
+                        },
+                        new Event
+                        {
+                            Name = "Shakespearean Play: Hamlet",
+                            Description = "To be or not to be...",
+                            EventType = EventType.Play,
+                            Date = new DateTime(2023, 12, 17),
+                            Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(45)),
+                            RoomId = 1
+                        },
+                        new Event
+                        {
+                            Name = "Jazz Night: Tribute to Miles Davis",
+                            Description = "A night of smooth jazz paying tribute to the legendary Miles Davis",
+                            EventType = EventType.Concert,
+                            Date = new DateTime(2023, 12, 19),
+                            Duration = TimeSpan.FromHours(2),
+                            RoomId = 4
+                        },
+                        new Event
+                        {
+                            Name = "Ballet: Swan Lake",
+                            Description = "A timeless ballet performance",
+                            EventType = EventType.Other,
+                            Date = new DateTime(2023, 12, 20),
+                            Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(15)),
+                            RoomId = 5
                         }
+
                     });
                     context.SaveChanges();
                 }
