@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Data;
 using TheatreBookingSystem_MVC.Models;
 
@@ -18,10 +19,10 @@ namespace TheatreBookingSystem_MVC.Controllers
         }
 
         // TODO: have to fix
-        /*public IActionResult Detail(int id)
-        { 
-            Event event = _context.Events.Include(r => r.Room).FirstOrDefault(e => e.Id == id);)
-            return View(event);
-        }*/
+        public IActionResult Detail(int id)
+        {
+            var @event = _context.Events.Include(r => r.Room).FirstOrDefault(e => e.Id == id);
+            return View(@event);
+        }
     }
 }
