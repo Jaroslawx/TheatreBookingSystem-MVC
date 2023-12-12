@@ -22,7 +22,7 @@ namespace TheatreBookingSystem_MVC.Data
                     {
                         new Building()
                         {
-                            Name = "House of Culture Building 1",
+                            Name = "House of Culture",
                             Street = "Freedom St. 3",
                             City = "Warsaw"
                          },
@@ -138,6 +138,116 @@ namespace TheatreBookingSystem_MVC.Data
                     });
                     context.SaveChanges();
                 }
+
+                if (!context.Actors.Any())
+                {
+                    context.Actors.AddRange(new List<Actor>()
+                    {
+                        new Actor
+                        {
+                            Name = "Michael",
+                            Surname = "Crawford"
+                        },
+                        new Actor
+                        {
+                            Name = "Sarah",
+                            Surname = "Brightman"
+                        },
+                        new Actor
+                        {
+                            Name = "Steve",
+                            Surname = "Perry"
+                        },
+                        new Actor
+                        {
+                            Name = "Neal",
+                            Surname = "Schon"
+                        },
+                        new Actor
+                        {
+                            Name = "Jonathan",
+                            Surname = "Cain"
+                        },
+                        new Actor
+                        {
+                            Name = "Ross",
+                            Surname = "Valory"
+                        },
+                        new Actor
+                        {
+                            Name = "Steve",
+                            Surname = "Smith"
+                        },
+                        new Actor
+                        {
+                            Name = "Hamlet",
+                            Surname = "Hamlet"
+                        },
+
+                    });
+                    context.SaveChanges();
+                }
+
+                if (!context.Casts.Any())
+                {
+                    context.Casts.AddRange(new List<Cast>()
+                    {
+                        new Cast
+                        {
+                            Role = "The Phantom",
+                            EventId = 1,
+                            ActorId = 1
+                        },
+                        new Cast
+                        {
+                            Role = "Christine Daaé",
+                            EventId = 1,
+                            ActorId = 2
+                        },
+                        new Cast
+                        {
+                            Role = "Raoul, Vicomte de Chagny",
+                            EventId = 1,
+                            ActorId = 3
+                        },
+                        new Cast
+                        {
+                            Role = "Count Philippe de Chagny",
+                            EventId = 1,
+                            ActorId = 4
+                        },
+                        new Cast
+                        {
+                            Role = "Carlotta Giudicelli",
+                            EventId = 1,
+                            ActorId = 5
+                        },
+                        new Cast
+                        {
+                            Role = "Monsieur Richard Firmin",
+                            EventId = 1,
+                            ActorId = 6
+                        },
+                        new Cast
+                        {
+                            Role = "Monsieur Gilles André",
+                            EventId = 1,
+                            ActorId = 7
+                        },
+                        new Cast
+                        {
+                            Role = "Ubaldo Piangi",
+                            EventId = 1,
+                            ActorId = 8
+                        },
+                        
+
+                    });
+                    context.SaveChanges();
+                }
+
+
+
             }
         }
     }

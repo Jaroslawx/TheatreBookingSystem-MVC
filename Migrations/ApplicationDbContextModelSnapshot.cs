@@ -185,6 +185,9 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<int?>("RoomId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Src")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RoomId");

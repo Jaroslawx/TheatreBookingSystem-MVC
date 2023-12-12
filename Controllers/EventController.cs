@@ -18,7 +18,6 @@ namespace TheatreBookingSystem_MVC.Controllers
             return View(events);
         }
 
-        // TODO: have to fix
         public IActionResult Detail(int id)
         {
             var @event = _context.Events.Include(r => r.Room).FirstOrDefault(e => e.Id == id);
