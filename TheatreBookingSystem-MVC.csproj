@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Home\Index.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
