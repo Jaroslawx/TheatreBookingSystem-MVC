@@ -4,25 +4,35 @@
 
 @if (Model != null)
 {
-<form asp-action="Purchase" method="post">
-    @Html.AntiForgeryToken()
+    <form asp-action="Purchase" method="post">
+        @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        <label asp-for="Row">Row:</label>
-        <input asp-for="Row" class="form-control" required />
-    </div>
+        <div class="form-group">
+            <label asp-for="Row">Row:</label>
+            <input asp-for="Row" class="form-control" required />
+        </div>
 
-    <div class="form-group">
-        <label asp-for="Seat">Seat:</label>
-        <input asp-for="Seat" class="form-control" required />
-    </div>
+        <div class="form-group">
+            <label asp-for="Seat">Seat:</label>
+            <input asp-for="Seat" class="form-control" required />
+        </div>
 
-    <!-- Add other ticket-related fields as needed -->
+        <div class="form-group">
+            <label asp-for="TicketType">Ticket Type:</label>
+            <select asp-for="TicketType" class="form-control" required>
+                <option value="@((int)TheatreBookingSystem_MVC.Data.Enum.TicketType.Normal)">Normal</option>
+                <option value="@((int)TheatreBookingSystem_MVC.Data.Enum.TicketType.Student)">Student</option>
+                <option value="@((int)TheatreBookingSystem_MVC.Data.Enum.TicketType.Senior)">Senior</option>
+                <option value="@((int)TheatreBookingSystem_MVC.Data.Enum.TicketType.Child)">Child</option>
+            </select>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Purchase</button>
-</form>
+        <!-- Add other ticket-related fields as needed -->
+
+        <button type="submit" class="btn btn-primary">Purchase</button>
+    </form>
 }
 else
 {
-<p>Invalid ticket information.</p>
+    <p>Invalid ticket information.</p>
 }

@@ -1,5 +1,4 @@
-﻿// TicketController.cs
-
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,29 +30,42 @@ namespace TheatreBookingSystem_MVC
         {
             Ticket initialTicket = availableTickets.FirstOrDefault();
 
-            // Pass the initial ticket as the model to the view
-            return View("Purchase", initialTicket);
-        }
-
-        [HttpPost]
-        public IActionResult Purchase(int id)
-        {
-            // Pobierz bilet o podanym ID
-            Ticket selectedTicket = availableTickets.FirstOrDefault(t => t.Id == id);
-
-            if (selectedTicket != null && selectedTicket.CanBePurchased())
+            if (initialTicket != null)
             {
-                selectedTicket.IsPurchased = true;
-                selectedTicket.PurchaseTime = DateTime.Now;
-
-                // selectedTicket.AppUserId = userId;
-
-                return RedirectToAction("PurchaseConfirmation", new { ticketId = selectedTicket.Id });
+                // Pass the initial ticket as the model to the view
+                return View("Purchase", initialTicket);
             }
             else
             {
+                ViewBag.ErrorMessage = "Brak dostępnych biletów do zakupu.";
                 return RedirectToAction("PurchaseError");
             }
+        }
+
+        [HttpPost]
+        public IActionResult Purchase(Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                // Perform validation and processing as needed
+
+                // For example, update the selected ticket with the provided information
+                Ticket selectedTicket = availableTickets.FirstOrDefault(t => t.Id == ticket.Id);
+
+                if (selectedTicket != null)// && selectedTicket.CanBePurchased())
+                {
+                    selectedTicket.IsPurchased = true;
+                    selectedTicket.PurchaseTime = DateTime.Now;
+                    selectedTicket.TicketType = ticket.TicketType; // Update ticket type
+
+                    // selectedTicket.AppUserId = userId;
+
+                    return RedirectToAction("PurchaseConfirmation", new { ticketId = selectedTicket.Id });
+                }
+            }
+
+            // If validation fails or other errors occur, return to the purchase page with the existing model
+            return View("Purchase", ticket);
         }
 
         // Akcja potwierdzenia zakupu
