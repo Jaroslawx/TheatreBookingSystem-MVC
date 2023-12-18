@@ -139,46 +139,46 @@ namespace TheatreBookingSystem_MVC.Data
                     context.SaveChanges();
                 }
 
-                if (!context.Actors.Any())
+                if (!context.Participants.Any())
                 {
-                    context.Actors.AddRange(new List<Actor>()
+                    context.Participants.AddRange(new List<Participant>()
                     {
-                        new Actor
+                        new Participant
                         {
                             Name = "Michael",
                             Surname = "Crawford"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Sarah",
                             Surname = "Brightman"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Steve",
                             Surname = "Perry"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Neal",
                             Surname = "Schon"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Jonathan",
                             Surname = "Cain"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Ross",
                             Surname = "Valory"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Steve",
                             Surname = "Smith"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Hamlet",
                             Surname = "Hamlet"

@@ -10,7 +10,7 @@ namespace TheatreBookingSystem_MVC.Data
         {
             
         }
-        public DbSet<Actor> Actors { get; set; }
+        public DbSet<Participant> Participants { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Cast> Casts { get; set; }
         public DbSet<Event> Events { get; set; }

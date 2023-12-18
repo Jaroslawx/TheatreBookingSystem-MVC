@@ -11,7 +11,7 @@
 
     <!-- Portfolio Item Heading -->
     <h1 class="my-4">
-        Page Heading
+        @Model.Name
         <small>Secondary Text</small>
     </h1>
 
@@ -19,7 +19,7 @@
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="@Model.Src" alt="">
+            <img class="img-fluid" src="@Model.Src" alt="@Model.Name banner" style="max-width: 1200px; max-height: 800px;">
         </div>
 
         <div class="col-md-4">
