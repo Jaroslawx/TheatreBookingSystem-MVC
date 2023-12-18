@@ -90,7 +90,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "A classic musical by Andrew Lloyd Webber",
                             Src = "https://i.ytimg.com/vi/F1nmDJmMvUc/maxresdefault.jpg",
                             EventType = EventType.Musical,
-                            Date = new DateTime(2023, 12, 13),
+                            Date = new DateTime(2023, 12, 13, 19, 0, 0),
                             Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(30)),
                             RoomId = 1
                         },
@@ -100,7 +100,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "An unforgettable night with iconic 80s rock hits",
                             Src = "https://techaeris.com/wp-content/uploads/2023/08/80s-Rock-Bands.jpg",
                             EventType = EventType.Concert,
-                            Date = new DateTime(2023, 12, 15),
+                            Date = new DateTime(2023, 12, 15, 20, 0, 0),
                             Duration = TimeSpan.FromHours(3),
                             RoomId = 2
                         },
@@ -110,7 +110,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "To be or not to be...",
                             Src = "https://i.ytimg.com/vi/6_Y-tYrGBDc/maxresdefault.jpg",
                             EventType = EventType.Play,
-                            Date = new DateTime(2023, 12, 17),
+                            Date = new DateTime(2023, 12, 17, 19, 30, 0),
                             Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(45)),
                             RoomId = 1
                         },
@@ -120,7 +120,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "A night of smooth jazz paying tribute to the legendary Miles Davis",                            
                             Src = "https://variety.com/wp-content/uploads/2010/01/miles-davis.jpg?w=1000&h=563&crop=1",
                             EventType = EventType.Concert,
-                            Date = new DateTime(2023, 12, 19),
+                            Date = new DateTime(2023, 12, 19, 21, 0, 0),
                             Duration = TimeSpan.FromHours(2),
                             RoomId = 4
                         },
@@ -130,7 +130,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "A timeless ballet performance",
                             Src = "https://assets.classicfm.com/2012/31/swan-lake-at-the-coliseum---london-1343916817-view-0.jpg",
                             EventType = EventType.Other,
-                            Date = new DateTime(2023, 12, 20),
+                            Date = new DateTime(2023, 12, 20, 18, 30, 0),
                             Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(15)),
                             RoomId = 5
                         }
@@ -196,49 +196,49 @@ namespace TheatreBookingSystem_MVC.Data
                         {
                             Role = "The Phantom",
                             EventId = 1,
-                            ActorId = 1
+                            ParticipantId = 1
                         },
                         new Cast
                         {
                             Role = "Christine Daaé",
                             EventId = 1,
-                            ActorId = 2
+                            ParticipantId = 2
                         },
                         new Cast
                         {
                             Role = "Raoul, Vicomte de Chagny",
                             EventId = 1,
-                            ActorId = 3
+                            ParticipantId = 3
                         },
                         new Cast
                         {
                             Role = "Count Philippe de Chagny",
                             EventId = 1,
-                            ActorId = 4
+                            ParticipantId = 4
                         },
                         new Cast
                         {
                             Role = "Carlotta Giudicelli",
                             EventId = 1,
-                            ActorId = 5
+                            ParticipantId = 5
                         },
                         new Cast
                         {
                             Role = "Monsieur Richard Firmin",
                             EventId = 1,
-                            ActorId = 6
+                            ParticipantId = 6
                         },
                         new Cast
                         {
                             Role = "Monsieur Gilles André",
                             EventId = 1,
-                            ActorId = 7
+                            ParticipantId = 7
                         },
                         new Cast
                         {
                             Role = "Ubaldo Piangi",
                             EventId = 1,
-                            ActorId = 8
+                            ParticipantId = 8
                         },
                         
 

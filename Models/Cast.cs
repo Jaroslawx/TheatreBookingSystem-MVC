@@ -11,8 +11,8 @@ namespace TheatreBookingSystem_MVC.Models
         [ForeignKey("Event")]
         public int? EventId { get; set; }
         public Event? Event { get; set; }
-        [ForeignKey("Actor")]
-		public int? ActorId { get; set; }
-		public Actor? Actor { get; set; }
+        [ForeignKey("Participant")]
+		public int? ParticipantId { get; set; }
+		public Participant? Participant { get; set; }
 	}
 }
