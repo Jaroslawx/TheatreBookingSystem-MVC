@@ -1,26 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Data;
+using TheatreBookingSystem_MVC.Interfaces;
 using TheatreBookingSystem_MVC.Models;
 
 namespace TheatreBookingSystem_MVC.Controllers
 {
     public class EventController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public EventController(ApplicationDbContext context)
+        private readonly IEventRepository _eventRepository;
+        public EventController(IEventRepository eventRepository)
         {
-            _context = context;
+            _eventRepository = eventRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Event> events = _context.Events.ToList();
+            IEnumerable<Event> events = await _eventRepository.GetAll();
             return View(events);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var @event = _context.Events.Include(r => r.Room).FirstOrDefault(e => e.Id == id);
+            var @event = await _eventRepository.GetByIdAsync(id);
             return View(@event);
         }
     }
