@@ -24,5 +24,22 @@ namespace TheatreBookingSystem_MVC.Controllers
             var @event = await _eventRepository.GetByIdAsync(id);
             return View(@event);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Event @event)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(@event);
+            }
+            _eventRepository.Add(@event);
+            return RedirectToAction("Index");
+        }   
+
     }
 }
