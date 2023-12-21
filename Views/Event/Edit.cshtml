@@ -1,0 +1,73 @@
+﻿@using TheatreBookingSystem_MVC.Data.Enum;
+@using TheatreBookingSystem_MVC.ViewModels;
+@model EditEventViewModel
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" value="AddressId" id="AddressId" />
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control" placeholder="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" class="form-control" placeholder="Description">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Src">Image</label>
+        <input asp-for="Src" class="form-control" placeholder="Image">
+        <span asp-validation-for="Src" class="text-danger"></span>
+    </div>
+    <!--
+    <div class="form-group">
+        <label asp-for="Src">Image</label>
+        <input asp-for="Src" type="file" class="form-control" placeholder="Image">
+        <span asp-validation-for="Src" class="text-danger"></span>
+    </div>
+    -->
+    <div class="form-group">
+        <label asp-for="EventType">Club Category</label>
+        <select asp-for="EventType" asp-items="@Html.GetEnumSelectList<EventType>()" class="form-control">
+            <option selected="selected" value="">--Select--</option>
+        </select>
+        <span asp-validation-for="EventType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Date">Date</label>
+        <input asp-for="Date" class="form-control" placeholder="Enter Date">
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Duration">Duration</label>
+        <select asp-for="Duration" class="form-control">
+            <option value="0:15">0:15</option>
+            <option value="0:30">0:30</option>
+            <option value="0:45">0:45</option>
+            <option value="1:00">1:00</option>
+            <option value="1:15">1:15</option>
+            <option value="1:30">1:30</option>
+            <option value="1:45">1:45</option>
+            <option value="2:00">2:00</option>
+            <option value="2:15">2:15</option>
+            <option value="2:30">2:30</option>
+            <option value="2:45">2:45</option>
+            <option value="3:00">3:00</option>
+            <option value="3:15">3:15</option>
+            <option value="3:30">3:30</option>
+            <option value="3:45">3:45</option>
+            <option value="4:00">4:00</option>
+            <option value="4:15">4:15</option>
+            <option value="4:30">4:30</option>
+            <option value="4:45">4:45</option>
+            <option value="5:00">5:00</option>
+        </select>
+        <span asp-validation-for="Duration" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoomId">Room Id</label>
+        <input asp-for="RoomId" class="form-control" placeholder="Enter Room Id">
+        <span asp-validation-for="RoomId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
