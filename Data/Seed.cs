@@ -183,69 +183,81 @@ namespace TheatreBookingSystem_MVC.Data
                             Name = "Hamlet",
                             Surname = "Hamlet"
                         },
+                        new Participant
+                        {
+                            Name = "John",
+                            Surname = "Doe"
+                        },
+                        new Participant
+                        {
+                            Name = "Jane",
+                            Surname = "Doe"
+                        },
+                        new Participant
+                        {
+                            Name = "Alice",
+                            Surname = "Johnson"
+                        },
 
                     });
                     context.SaveChanges();
                 }
 
-                if (!context.Casts.Any())
+                if (!context.Performers.Any())
                 {
-                    context.Casts.AddRange(new List<Cast>()
+                    context.Performers.AddRange(new List<Performer>()
                     {
-                        new Cast
+                        new Performer
                         {
                             Role = "The Phantom",
                             EventId = 1,
                             ParticipantId = 1
                         },
-                        new Cast
+                        new Performer
                         {
                             Role = "Christine Daaé",
                             EventId = 1,
                             ParticipantId = 2
                         },
-                        new Cast
+                        new Performer
                         {
                             Role = "Raoul, Vicomte de Chagny",
                             EventId = 1,
                             ParticipantId = 3
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Count Philippe de Chagny",
-                            EventId = 1,
+                            Role = "Lead Guitarist",
+                            EventId = 2,
                             ParticipantId = 4
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Carlotta Giudicelli",
-                            EventId = 1,
+                            Role = "Lead Singer",
+                            EventId = 2,
                             ParticipantId = 5
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Monsieur Richard Firmin",
-                            EventId = 1,
+                            Role = "Pianist",
+                            EventId = 3,
                             ParticipantId = 6
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Monsieur Gilles André",
-                            EventId = 1,
+                            Role = "Jazz Trumpeter",
+                            EventId = 4,
                             ParticipantId = 7
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Ubaldo Piangi",
-                            EventId = 1,
+                            Role = "Ballet Dancer",
+                            EventId = 5,
                             ParticipantId = 8
                         },
-                        
-
                     });
                     context.SaveChanges();
                 }
-
 
 
             }
