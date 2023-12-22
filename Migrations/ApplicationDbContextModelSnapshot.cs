@@ -174,17 +174,11 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsAdmin")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -197,9 +191,6 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -207,9 +198,6 @@ namespace TheatreBookingSystem_MVC.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -498,7 +486,7 @@ namespace TheatreBookingSystem_MVC.Migrations
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Reservation", b =>
                 {
                     b.HasOne("TheatreBookingSystem_MVC.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Reservations")
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("TheatreBookingSystem_MVC.Models.Room", "Room")
@@ -522,7 +510,7 @@ namespace TheatreBookingSystem_MVC.Migrations
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Ticket", b =>
                 {
                     b.HasOne("TheatreBookingSystem_MVC.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("TheatreBookingSystem_MVC.Models.Event", "Event")
@@ -532,6 +520,13 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Event");
+                });
+
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.AppUser", b =>
+                {
+                    b.Navigation("Reservations");
+
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }

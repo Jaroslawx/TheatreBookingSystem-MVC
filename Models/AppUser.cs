@@ -5,10 +5,10 @@ namespace TheatreBookingSystem_MVC.Models
 {
 	public class AppUser : IdentityUser
 	{
-		public string? Name { get; set; }
-		public string? Surname { get; set; }
-		public string? Phone { get; set; }
-		public bool? IsAdmin { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
+		public ICollection<Reservation> Reservations { get; set; }
+		//public ICollection<Transaction>? Transactions { get; set; }
 
+		// TODO: Leave transaction or remove from models?
 	}
 }
