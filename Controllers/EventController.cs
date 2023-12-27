@@ -87,5 +87,22 @@ namespace TheatreBookingSystem_MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var @eventDetails = await _eventRepository.GetByIdAsync(id);
+            if (@eventDetails == null) return View("Error");
+            return View(@eventDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteEvent (int id)
+        {
+            var @eventDetails = await _eventRepository.GetByIdAsync(id);
+            if (@eventDetails == null) return View("Error");
+
+            _eventRepository.Delete(@eventDetails);
+            return RedirectToAction("Index");
+        }
+
     }
 }
