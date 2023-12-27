@@ -11,12 +11,15 @@ namespace TheatreBookingSystem_MVC.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ApplicationDbContext _context;
+
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
             _signInManager = signInManager;
+            _userManager = userManager;
         }
+
+        [HttpGet]
         public IActionResult Login()
         {
             var response = new LoginViewModel();
@@ -52,6 +55,7 @@ namespace TheatreBookingSystem_MVC.Controllers
             return View(loginViewModel);
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
             var response = new RegisterViewModel();
@@ -63,7 +67,7 @@ namespace TheatreBookingSystem_MVC.Controllers
         {
             if (!ModelState.IsValid) return View(registerViewModel);
 
-            var user = await _userManager.FindByEmailAsync(registerViewModel.Email);
+            var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
             if (user != null)
             {
                 // User already exists
@@ -71,24 +75,24 @@ namespace TheatreBookingSystem_MVC.Controllers
                 return View(registerViewModel);
             }
 
-            var newUser = new AppUser
+            var newUser = new AppUser()
             {
-                Email = registerViewModel.Email,
-                UserName = registerViewModel.Email
+                Email = registerViewModel.EmailAddress,
+                UserName = registerViewModel.EmailAddress
             };
             var newUserResult = await _userManager.CreateAsync(newUser, registerViewModel.Password);
 
             if (newUserResult.Succeeded)
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 
-            return View("Home");
+            return RedirectToAction("Index", "Event");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Event");
         }
 
 

@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TheatreBookingSystem_MVC.ViewModels
 {
-    public class RegisterViewModel : Controller
+    public class RegisterViewModel
     {
         [Display(Name = "Email address")]
         [Required(ErrorMessage = "Email is required")]
-        public string Email { get; set; }
+        public string EmailAddress { get; set; }
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
