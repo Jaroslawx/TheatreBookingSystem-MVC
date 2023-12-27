@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Data;
 using TheatreBookingSystem_MVC.Interfaces;
 using TheatreBookingSystem_MVC.Models;
+using TheatreBookingSystem_MVC.ViewModels;
 
 namespace TheatreBookingSystem_MVC.Controllers
 {
@@ -24,5 +25,84 @@ namespace TheatreBookingSystem_MVC.Controllers
             var @event = await _eventRepository.GetByIdAsync(id);
             return View(@event);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+            // TODO: In Create instead of room id use room number
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Event @event)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(@event);
+            }
+            _eventRepository.Add(@event);
+            return RedirectToAction("Index");
+        }
+        
+        public async Task<IActionResult> Edit(int id)
+        {
+            var @event = await _eventRepository.GetByIdAsync(id);
+            if (@event == null) return View("Error");
+            var eventVM = new EditEventViewModel
+            {
+                Id = @event.Id,
+                Name = @event.Name,
+                Description = @event.Description,
+                Src = @event.Src,
+                EventType = @event.EventType,
+                Date = @event.Date,
+                Duration = @event.Duration,
+                RoomId = @event.RoomId
+            };
+            return View(eventVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditEventViewModel eventVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit event");
+                return View("Edit", eventVM);
+            }
+            
+            var @event = new Event
+            {
+                Id = id,
+                Name = eventVM.Name,
+                Description = eventVM.Description,
+                Src = eventVM.Src,
+                EventType = eventVM.EventType,
+                Date = eventVM.Date,
+                Duration = eventVM.Duration,
+                RoomId = eventVM.RoomId
+            };
+
+            _eventRepository.Update(@event);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var @eventDetails = await _eventRepository.GetByIdAsync(id);
+            if (@eventDetails == null) return View("Error");
+            return View(@eventDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteEvent (int id)
+        {
+            var @eventDetails = await _eventRepository.GetByIdAsync(id);
+            if (@eventDetails == null) return View("Error");
+
+            _eventRepository.Delete(@eventDetails);
+            return RedirectToAction("Index");
+        }
+
     }
 }

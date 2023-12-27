@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TheatreBookingSystem_MVC.Models
 {
-	public class Cast
-	{
+	public class Performer
+    {
         [Key]
         public int? Id { get; set; }
 		public string? Role { get; set; }

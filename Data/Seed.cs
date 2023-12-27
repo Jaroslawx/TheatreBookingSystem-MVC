@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Net;
 using TheatreBookingSystem_MVC.Data.Enum;
 using TheatreBookingSystem_MVC.Models;
 using static System.Net.WebRequestMethods;
@@ -183,72 +184,133 @@ namespace TheatreBookingSystem_MVC.Data
                             Name = "Hamlet",
                             Surname = "Hamlet"
                         },
+                        new Participant
+                        {
+                            Name = "John",
+                            Surname = "Doe"
+                        },
+                        new Participant
+                        {
+                            Name = "Jane",
+                            Surname = "Doe"
+                        },
+                        new Participant
+                        {
+                            Name = "Alice",
+                            Surname = "Johnson"
+                        },
 
                     });
                     context.SaveChanges();
                 }
 
-                if (!context.Casts.Any())
+                if (!context.Performers.Any())
                 {
-                    context.Casts.AddRange(new List<Cast>()
+                    context.Performers.AddRange(new List<Performer>()
                     {
-                        new Cast
+                        new Performer
                         {
                             Role = "The Phantom",
                             EventId = 1,
                             ParticipantId = 1
                         },
-                        new Cast
+                        new Performer
                         {
                             Role = "Christine Daaé",
                             EventId = 1,
                             ParticipantId = 2
                         },
-                        new Cast
+                        new Performer
                         {
                             Role = "Raoul, Vicomte de Chagny",
                             EventId = 1,
                             ParticipantId = 3
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Count Philippe de Chagny",
-                            EventId = 1,
+                            Role = "Lead Guitarist",
+                            EventId = 2,
                             ParticipantId = 4
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Carlotta Giudicelli",
-                            EventId = 1,
+                            Role = "Lead Singer",
+                            EventId = 2,
                             ParticipantId = 5
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Monsieur Richard Firmin",
-                            EventId = 1,
+                            Role = "Pianist",
+                            EventId = 3,
                             ParticipantId = 6
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Monsieur Gilles André",
-                            EventId = 1,
+                            Role = "Jazz Trumpeter",
+                            EventId = 4,
                             ParticipantId = 7
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Ubaldo Piangi",
-                            EventId = 1,
+                            Role = "Ballet Dancer",
+                            EventId = 5,
                             ParticipantId = 8
                         },
-                        
-
                     });
                     context.SaveChanges();
                 }
 
 
-
             }
         }
+
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                //Roles
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+                //Users
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+                string adminUserEmail = "xxxviroxxx@wp.pl";
+
+                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+                if (adminUser == null)
+                {
+                    var newAdminUser = new AppUser()
+                    {
+                        UserName = "Admin",
+                        Email = adminUserEmail,
+                        EmailConfirmed = true,
+                    };
+                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+                }
+
+                string appUserEmail = "user@etickets.com";
+
+                var appUser = await userManager.FindByEmailAsync(appUserEmail);
+                if (appUser == null)
+                {
+                    var newAppUser = new AppUser()
+                    {
+                        UserName = "app-user",
+                        Email = appUserEmail,
+                        EmailConfirmed = true,
+                    };
+                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+                }
+            }
+        }
+
+
+
     }
 }

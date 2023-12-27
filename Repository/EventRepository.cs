@@ -48,7 +48,8 @@ namespace TheatreBookingSystem_MVC.Repository
 
         public bool Update(Event @event)
         {
-            throw new NotImplementedException();
+            _context.Update(@event);
+            return Save();
         }
     }
 }

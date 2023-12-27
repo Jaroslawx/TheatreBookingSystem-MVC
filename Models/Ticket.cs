@@ -15,7 +15,7 @@ namespace TheatreBookingSystem_MVC.Models
         public int? EventId { get; set; }
         public Event? Event { get; set; }
         [ForeignKey("AppUser")]
-        public int? AppUserId { get; set; }
+        public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
 
     }
