@@ -1,0 +1,27 @@
+﻿@model List<Transaction>
+
+<h2>Transaction List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Price</th>
+            <th>Purchase Date</th>
+            <th>Ticket Purchaser</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.Id</td>
+                <td>@transaction.Price</td>
+                <td>@transaction.PurchaseDate</td>
+                <td>@transaction.Ticket?.PurchaserName</td>
+                <td>@transaction.AppUser?.UserName</td>
+            </tr>
+        }
+    </tbody>
+</table>
