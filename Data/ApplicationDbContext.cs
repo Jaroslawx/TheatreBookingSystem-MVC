@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Models;
 
 namespace TheatreBookingSystem_MVC.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         // TODO: Add convert TimeSpan into ticks
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

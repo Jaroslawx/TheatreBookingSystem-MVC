@@ -1,0 +1,40 @@
+﻿@model List<Ticket>
+
+<h2>Available Tickets</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Row</th>
+            <th>Seat</th>
+            <th>Ticket Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @if (Model != null)
+    {
+        <tbody>
+            @foreach (var ticket in Model)
+            {
+                <tr>
+                    <td>@ticket.Row</td>
+                    <td>@ticket.Seat</td>
+                    <td>@ticket.TicketType</td>
+                    <td>
+                        @if (ticket.CanBePurchased())
+                        {
+                            <a asp-action="Purchase" asp-route-ticketId="@ticket.Id">Buy</a>
+                        }
+                        @if (ticket.CanBeReturned())
+                        {
+                            <a asp-action="ReturnTicket" asp-route-ticketId="@ticket.Id">Return</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <p>No tickets available.</p>
+    }
