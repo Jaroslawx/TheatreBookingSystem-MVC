@@ -1,40 +1,23 @@
-﻿@model List<Ticket>
+﻿@model TheatreBookingSystem_MVC.ViewModels.TicketViewModel
 
-<h2>Available Tickets</h2>
+<h2>Buy Ticket</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Row</th>
-            <th>Seat</th>
-            <th>Ticket Type</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    @if (Model != null)
-    {
-        <tbody>
-            @foreach (var ticket in Model)
-            {
-                <tr>
-                    <td>@ticket.Row</td>
-                    <td>@ticket.Seat</td>
-                    <td>@ticket.TicketType</td>
-                    <td>
-                        @if (ticket.CanBePurchased())
-                        {
-                            <a asp-action="Purchase" asp-route-ticketId="@ticket.Id">Buy</a>
-                        }
-                        @if (ticket.CanBeReturned())
-                        {
-                            <a asp-action="ReturnTicket" asp-route-ticketId="@ticket.Id">Return</a>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    }
-    else
-    {
-        <p>No tickets available.</p>
-    }
+<p>Event: @Model.EventName</p>
+<p>Selected Ticket Type: @Model.SelectedTicketType</p>
+<p>Selected Row: @Model.SelectedRow</p>
+<p>Selected Seat: @Model.SelectedSeat</p>
+<p>Purchaser Name: @Model.PurchaserName</p>
+<p>Purchaser Email: @Model.PurchaserEmail</p>
+
+<form asp-controller="Ticket" asp-action="BuyTicket" method="post">
+    <div>
+        <label for="PurchaserName">Purchaser Name:</label>
+        <input type="text" id="PurchaserName" name="PurchaserName" />
+    </div>
+    <div>
+        <label for="PurchaserEmail">Purchaser Email:</label>
+        <input type="text" id="PurchaserEmail" name="PurchaserEmail" />
+    </div>
+
+    <input type="submit" value="Purchase Ticket" />
+</form>
