@@ -13,7 +13,8 @@ namespace TheatreBookingSystem_MVC.Controllers
         {
             _dashboardRepository = dashboardRepository;
         }
-        public ActionResult Index()
+
+        public IActionResult Index()
         {
             
             return View();

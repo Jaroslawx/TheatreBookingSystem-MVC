@@ -17,5 +17,9 @@ namespace TheatreBookingSystem_MVC.Repository
         {
             throw new NotImplementedException();
         }
+        public async Task<List<IEventRepository>> GetAllEvents()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
