@@ -37,7 +37,6 @@ namespace TheatreBookingSystem_MVC.Controllers
         public IActionResult Create()
         {
             return View();
-            // TODO: In Create instead of room id use room number
         }
 
         [HttpPost]

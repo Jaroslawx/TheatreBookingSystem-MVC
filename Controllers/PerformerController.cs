@@ -16,6 +16,7 @@ namespace TheatreBookingSystem_MVC.Controllers
             _eventRepository = eventRepository;
             _participantRepository = participantRepository;
         }
+
         public async Task<IActionResult> Index()
         {
             IEnumerable<Performer> performers = await _performerRepository.GetAll();
@@ -32,5 +33,39 @@ namespace TheatreBookingSystem_MVC.Controllers
 
             return View(performerViewModels);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Performer @performer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(@performer);
+            }
+            _performerRepository.Add(@performer);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var @performerDetails = await _performerRepository.GetByIdAsync(id);
+            if (@performerDetails == null) return View("Error");
+            return View(@performerDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeletePerformer(int id)
+        {
+            var @performerDetails = await _performerRepository.GetByIdAsync(id);
+            if (@performerDetails == null) return View("Error");
+
+            _performerRepository.Delete(@performerDetails);
+            return RedirectToAction("Index");
+        }
+
     }
 }
