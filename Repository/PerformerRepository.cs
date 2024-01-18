@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Data;
 using TheatreBookingSystem_MVC.Interfaces;
 using TheatreBookingSystem_MVC.Models;
@@ -12,24 +13,26 @@ namespace TheatreBookingSystem_MVC.Repository
         {
             _context = context;
         }
-        public bool Add(Performer performer)
+        public bool Add(Performer @performer)
         {
-            throw new NotImplementedException();
+            _context.Add(@performer);
+            return Save();
         }
 
-        public bool Delete(Performer performer)
+        public bool Delete(Performer @performer)
         {
-            throw new NotImplementedException();
+            _context.Remove(@performer);
+            return Save();
         }
 
-        public Task<IEnumerable<Performer>> GetAll()
+        public async Task<IEnumerable<Performer>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Performers.ToListAsync();
         }
 
-        public Task<Performer> GetByIdAsync(int id)
+        public async Task<Performer> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Performers.FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public Task<IEnumerable<Performer>> GetEventByName(string name)
@@ -39,12 +42,14 @@ namespace TheatreBookingSystem_MVC.Repository
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            var saved = _context.SaveChanges();
+            return saved >= 0 ? true : false;
         }
 
         public bool Update(Performer performer)
         {
-            throw new NotImplementedException();
+            _context.Update(performer);
+            return Save();
         }
     }
 }

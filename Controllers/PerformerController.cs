@@ -8,24 +8,27 @@ namespace TheatreBookingSystem_MVC.Controllers
     public class PerformerController : Controller
     {
         private readonly IPerformerRepository _performerRepository;
-        public PerformerController(IPerformerRepository performerRepository)
+        private readonly IEventRepository _eventRepository;
+        private readonly IParticipantRepository _participantRepository;
+        public PerformerController(IPerformerRepository performerRepository, IEventRepository eventRepository, IParticipantRepository participantRepository)
         {
             _performerRepository = performerRepository;
+            _eventRepository = eventRepository;
+            _participantRepository = participantRepository;
         }
         public async Task<IActionResult> Index()
         {
             IEnumerable<Performer> performers = await _performerRepository.GetAll();
 
-            var performerViewModels = performers.Select(p => new PerformerViewModel
+            var performerViewModels = await Task.WhenAll(performers.Select(async p => new PerformerViewModel
             {
                 PerformerId = p.Id,
                 Role = p.Role,
                 EventId = p.EventId,
-                EventName = p.Event?.Name,
+                EventName = await _eventRepository.GetEventNameById(p.EventId ?? 0),
                 ParticipantId = p.ParticipantId,
-                ParticipantName = p.Participant?.Name,
-                ParticipantSurname = p.Participant?.Surname
-            });
+                ParticipantFullName = await _participantRepository.GetParticipantFullNameById(p.ParticipantId ?? 0),
+            }));
 
             return View(performerViewModels);
         }

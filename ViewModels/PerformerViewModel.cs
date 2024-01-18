@@ -9,8 +9,7 @@ namespace TheatreBookingSystem_MVC.ViewModels
         public int? EventId { get; set; }
         public string? EventName { get; set; }
         public int? ParticipantId { get; set; }
-        public string? ParticipantName { get; set; }
-        public string? ParticipantSurname { get; set; }
+        public string? ParticipantFullName { get; set; }
     }
 
 }

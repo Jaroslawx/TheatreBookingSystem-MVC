@@ -1,5 +1,5 @@
 ﻿﻿@using TheatreBookingSystem_MVC.ViewModels
-@model IEnumerable<PerformerViewModel>
+@model IEnumerable<TheatreBookingSystem_MVC.ViewModels.PerformerViewModel>
 
 <h1>Performers</h1>
 
@@ -17,7 +17,7 @@
             <tr>
                 <td>@performer.Role</td>
                 <td>@performer.EventName</td>
-                <td>@($"{performer.ParticipantName} {performer.ParticipantSurname}")</td>
+                <td>@performer.ParticipantFullName</td>
             </tr>
         }
     </tbody>
