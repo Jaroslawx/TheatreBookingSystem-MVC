@@ -88,7 +88,7 @@ namespace TheatreBookingSystem_MVC.Controllers
             return RedirectToAction("Index", "Event");
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

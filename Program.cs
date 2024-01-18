@@ -10,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IPerformerRepository, PerformerRepository>();
+builder.Services.AddScoped<IParticipantRepository, ParticipantRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -44,7 +47,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
