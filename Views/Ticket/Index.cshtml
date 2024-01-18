@@ -4,4 +4,20 @@
 @{
 }
 
-<h1>Hello Index</h1>
+@{
+    ViewData["Title"] = "Ticket Index";
+}
+
+<h2>Ticket Index</h2>
+
+<p>Welcome to the Ticket Index page.</p>
+
+<!-- Add a link to the BuyTicket action -->
+<form asp-controller="Ticket" asp-action="BuyTicket" method="get">
+    <button type="submit" class="btn btn-primary">Buy Ticket</button>
+</form>
+
+<!-- Add a link to the Return action -->
+<form asp-controller="Ticket" asp-action="Return" method="get">
+    <button type="submit" class="btn btn-primary">Return Ticket</button>
+</form>
