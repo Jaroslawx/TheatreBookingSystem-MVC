@@ -1,7 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<h1>Performer</h1>
+﻿﻿@using TheatreBookingSystem_MVC.ViewModels
+@model IEnumerable<PerformerViewModel>
 
+<h1>Performers</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Event</th>
+            <th>Actor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var performer in Model)
+        {
+            <tr>
+                <td>@performer.Role</td>
+                <td>@performer.EventName</td>
+                <td>@($"{performer.ParticipantName} {performer.ParticipantSurname}")</td>
+            </tr>
+        }
+    </tbody>
+</table>
