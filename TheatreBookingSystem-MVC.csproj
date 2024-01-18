@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TheatreBookingSystem_MVC</RootNamespace>
+    <UserSecretsId>40772ab7-4ed5-41f5-92c0-7d6b2e38baed</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,8 @@
     <Content Remove="Views\NewFolder1\**" />
     <EmbeddedResource Remove="Views\NewFolder1\**" />
     <None Remove="Views\NewFolder1\**" />
+    <Folder Include="Migrations\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>
