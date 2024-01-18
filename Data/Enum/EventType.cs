@@ -7,5 +7,7 @@
         Opera,
         Musical,
         Other
+
+        // TODO: Add more event types (e.g movie, ballet, comedy, etc.)
     }
 }

@@ -5,9 +5,11 @@ namespace TheatreBookingSystem_MVC.Models
 {
 	public class AppUser : IdentityUser
 	{
-		
 
-		// Leave only ticket list and IsAdmin? Rest in view model?
+    public ICollection<Ticket> Tickets { get; set; }
+		public ICollection<Reservation> Reservations { get; set; }
+		public ICollection<Transaction>? Transactions { get; set; }
 
+		// TODO: Leave transaction or remove from models?
 	}
 }
