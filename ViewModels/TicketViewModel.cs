@@ -11,16 +11,9 @@ namespace TheatreBookingSystem_MVC.ViewModels
         public TicketType SelectedTicketType { get; set; }
         public int? SelectedRow { get; set; }
         public int? SelectedSeat { get; set; }
-        public string? PurchaserName { get; set; }
-        public string? PurchaserEmail { get; set; }
+        public string PurchaserName { get; set; }
+        public string PurchaserEmail { get; set; }
     }
 
-    // ReturnTicketViewModel.cs
-    public class ReturnTicketViewModel
-    {
-        public int? TicketId { get; set; }
-        public string? EventName { get; set; }
-        public string? PurchaserName { get; set; }
-        public string? ReturnReason { get; set; }
-    }
+    
 }

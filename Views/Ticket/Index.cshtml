@@ -1,23 +1,91 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using TheatreBookingSystem_MVC.ViewModels;
+@model EventDetailViewModel
 
 @{
-    ViewData["Title"] = "Ticket Index";
+    ViewBag.Title = "Buy Ticket";
 }
 
-<h2>Ticket Index</h2>
+<div class="container">
 
-<p>Welcome to the Ticket Index page.</p>
+    <h1 class="my-4">
+        @Model.CurrentEvent.Name
+        <small></small>
+    </h1>
 
-<!-- Add a link to the BuyTicket action -->
-<form asp-controller="Ticket" asp-action="BuyTicket" method="get">
-    <button type="submit" class="btn btn-primary">Buy Ticket</button>
-</form>
+    <div class="row">
 
-<!-- Add a link to the Return action -->
-<form asp-controller="Ticket" asp-action="Return" method="get">
-    <button type="submit" class="btn btn-primary">Return Ticket</button>
-</form>
+        <div class="col-md-8">
+            <img class="img-fluid" src="@Model.CurrentEvent.Src" alt="@Model.CurrentEvent.Name banner" style="max-width: 800px; max-height: 600px;">
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="my-3">Description:</h3>
+            <p>@Model.CurrentEvent.Description</p>
+            <h3 class="my-3">Information:</h3>
+            <ul>
+                <li>Type: @Model.CurrentEvent.EventType</li>
+                <li>Date: @Model.CurrentEvent.Date</li>
+                <li>Duration: @Model.CurrentEvent.Duration</li>
+            </ul>
+            <h3 class="my-3">Buy Ticket:</h3>
+            @using (Html.BeginForm("BuyTicket", "Ticket", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.CurrentEvent.Id)
+                <label for="seat">Select Seat:</label>
+                <select id="seat" name="seat">
+                    <!-- Add options for seat selection based on your requirements -->
+                </select>
+
+                <label for="row">Select Row:</label>
+                <select id="row" name="row">
+                    <!-- Add options for row selection based on your requirements -->
+                </select>
+
+                <label for="ticketType">Select Ticket Type:</label>
+                <select id="ticketType" name="ticketType">
+                    <option value="Normal">Normal</option>
+                    <option value="Student">Student</option>
+                    <option value="Senior">Senior</option>
+                    <option value="Child">Child</option>
+                </select>
+
+                <label for="purchaserName">Your Name:</label>
+                <input type="text" id="purchaserName" name="purchaserName" required />
+
+                <label for="purchaserEmail">Your Email:</label>
+                <input type="email" id="purchaserEmail" name="purchaserEmail" required />
+
+                <input type="submit" value="Purchase" class="btn btn-primary" />
+            }
+        </div>
+
+    </div>
+
+    <h3 class="my-4">Other Events</h3>
+
+    <div class="row">
+        @foreach (var otherEvent in Model.OtherEvents)
+        {
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="@Url.Action("Detail", "Event", new { id = otherEvent.Id })">
+                    <img class="img-fluid" src="@otherEvent.Src" alt="@otherEvent.Name banner" style="max-width: 100%; max-height: 100%;">
+                </a>
+            </div>
+        }
+    </div>
+
+</div>
+
+@section scripts {
+    <script>
+        // Check for notification message and display an alert
+        $(document).ready(function () {
+            var notificationType = '@TempData["NotificationType"]';
+            var notificationMessage = '@TempData["NotificationMessage"]';
+
+            if (notificationType && notificationMessage) {
+                alertify.notify(notificationMessage, notificationType);
+            }
+        });
+    </script>
+}
