@@ -1,0 +1,24 @@
+﻿﻿@using TheatreBookingSystem_MVC.ViewModels
+@model IEnumerable<TheatreBookingSystem_MVC.ViewModels.PerformerViewModel>
+
+<h1>Performers</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Event</th>
+            <th>Actor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var performer in Model)
+        {
+            <tr>
+                <td>@performer.Role</td>
+                <td>@performer.EventName</td>
+                <td>@performer.ParticipantFullName</td>
+            </tr>
+        }
+    </tbody>
+</table>

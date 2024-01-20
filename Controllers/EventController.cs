@@ -23,13 +23,20 @@ namespace TheatreBookingSystem_MVC.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var @event = await _eventRepository.GetByIdAsync(id);
-            return View(@event);
+            var otherEvents = await _eventRepository.GetEventWithout(id);
+
+            var viewModel = new EventDetailViewModel
+            {
+                CurrentEvent = @event,
+                OtherEvents = otherEvents.ToList()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Create()
         {
             return View();
-            // TODO: In Create instead of room id use room number
         }
 
         [HttpPost]
