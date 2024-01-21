@@ -1,71 +1,47 @@
-﻿@model Event
+﻿@using TheatreBookingSystem_MVC.ViewModels;
+@model EventDetailViewModel
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
 }
 
-<!-- Page Content -->
 <div class="container">
 
-    <!-- Portfolio Item Heading -->
     <h1 class="my-4">
-        Page Heading
-        <small>Secondary Text</small>
+        @Model.CurrentEvent.Name
+        <small></small>
     </h1>
 
-    <!-- Portfolio Item Row -->
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="@Model.Src" alt="">
+            <img class="img-fluid" src="@Model.CurrentEvent.Src" alt="@Model.CurrentEvent.Name banner" style="max-width: 800px; max-height: 600px;">
         </div>
 
         <div class="col-md-4">
-            <h3 class="my-3">@Model.Name</h3>
-            <p>@Model.Description</p>
+            <h3 class="my-3">Descryption:</h3>
+            <p>@Model.CurrentEvent.Description</p>
             <h3 class="my-3">Information:</h3>
             <ul>
-                <li>Type: @Model.EventType</li>
-                <li>Date: @Model.Date</li>
-                <li>Duration: @Model.Duration</li>
+                <li>Type: @Model.CurrentEvent.EventType</li>
+                <li>Date: @Model.CurrentEvent.Date</li>
+                <li>Duration: @Model.CurrentEvent.Duration</li>
             </ul>
+            <a href="@Url.Action("Index", "Ticket", new { eventId = Model.CurrentEvent.Id })" class="btn btn-primary">Buy Ticket</a>
         </div>
 
     </div>
-    <!-- /.row -->
-    <!-- Related Projects Row -->
+
     <h3 class="my-4">Other Events</h3>
 
     <div class="row">
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
+        @foreach (var otherEvent in Model.OtherEvents)
+        {
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="@Url.Action("Detail", "Event", new { id = otherEvent.Id })">
+                    <img class="img-fluid" src="@otherEvent.Src" alt="@otherEvent.Name banner" style="max-width: 100%; max-height: 100%;">
+                </a>
+            </div>
+        }
     </div>
-    <!-- /.row -->
 
 </div>
-<!-- /.container -->
