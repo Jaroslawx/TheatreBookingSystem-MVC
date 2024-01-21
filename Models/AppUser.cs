@@ -5,9 +5,9 @@ namespace TheatreBookingSystem_MVC.Models
 {
 	public class AppUser : IdentityUser
 	{
-      public ICollection<Ticket> Tickets { get; set; }
+		  public ICollection<Ticket> Tickets { get; set; }
 		  public ICollection<Reservation> Reservations { get; set; }
-		  public ICollection<Transaction>? Transactions { get; set; }
+		  //public ICollection<Transaction>? Transactions { get; set; }
 
 	}
 }

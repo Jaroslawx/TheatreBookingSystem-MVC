@@ -25,7 +25,7 @@ namespace TheatreBookingSystem_MVC.Controllers
             var currentUser = _userManager.GetUserAsync(User).Result;
 
             // Ustaw nową wiadomość
-            currentUser.Message = userMessage;
+            // currentUser.Message = userMessage;
 
             // Zapisz zmiany w bazie danych
             _context.SaveChanges();
