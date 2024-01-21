@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Data;
+using TheatreBookingSystem_MVC.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
