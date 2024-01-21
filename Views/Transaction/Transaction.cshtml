@@ -1,0 +1,30 @@
+﻿@model List<TheatreBookingSystem_MVC.Models.Transaction>
+
+<h1>Transactions for User</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No transactions found for the user.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ticket Type</th>
+                <th>Row</th>
+                <th>Seat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+                <tr>
+                    <td>@transaction.Ticket.TicketType</td>
+                    <td>@transaction.Ticket.Row</td>
+                    <td>@transaction.Ticket.Seat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
