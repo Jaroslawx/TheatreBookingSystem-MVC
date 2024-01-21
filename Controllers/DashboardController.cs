@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Data;
 using TheatreBookingSystem_MVC.Interfaces;
 using TheatreBookingSystem_MVC.Models;
+using TheatreBookingSystem_MVC.ViewModels;
 
 namespace TheatreBookingSystem_MVC.Controllers
 {
@@ -14,10 +15,14 @@ namespace TheatreBookingSystem_MVC.Controllers
             _dashboardRepository = dashboardRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            return View();
+            var userEvents = await _dashboardRepository.GetAllUserEvents();
+            var dashboardViewModel = new DashboardViewModel()
+            {
+                Events = userEvents
+            };
+            return View(dashboardViewModel);
         }
     }
 }

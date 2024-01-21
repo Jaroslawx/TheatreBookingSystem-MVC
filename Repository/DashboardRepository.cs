@@ -1,30 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TheatreBookingSystem_MVC.Data;
 using TheatreBookingSystem_MVC.Interfaces;
+using TheatreBookingSystem_MVC.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+
 
 namespace TheatreBookingSystem_MVC.Repository
 {
     public class DashboardRepository : IDashboardRepository
     {
         private readonly ApplicationDbContext _context;
-        private readonly IHttpContextAccessor _HttpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public DashboardRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
-            _HttpContextAccessor = httpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<List<IEventRepository>> GetAllReservations()
+        public async Task<List<Event>> GetAllEvents()
         {
-            throw new NotImplementedException();
+            return new List<Event>();
         }
-        public async Task<List<IEventRepository>> GetAllEvents()
+        public async Task<List<Event>> GetAllUserEvents()
         {
-            throw new NotImplementedException();
-        }
+            var curUserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        public Task<List<IEventRepository>> GetAllUserEvents()
-        {
-            throw new NotImplementedException();
+            if (curUserId != null)
+            {
+                var userEvents = _context.Events.Where(r => r.AppUserId == curUserId);
+                return await userEvents.ToListAsync();
+            }
+            else
+            {
+                // Handle the case where user id is not found
+                return new List<Event>();
+            }
         }
     }
 }

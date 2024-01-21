@@ -217,7 +217,8 @@ namespace TheatreBookingSystem_MVC.Migrations
                     EventType = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: true),
-                    RoomId = table.Column<int>(type: "int", nullable: true)
+                    RoomId = table.Column<int>(type: "int", nullable: true),
+                    AppUserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

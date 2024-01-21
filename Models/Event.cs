@@ -17,6 +17,8 @@ namespace TheatreBookingSystem_MVC.Models
         [ForeignKey("Room")]
         public int? RoomId { get; set; }
         public Room? Room { get; set; }
+        [ForeignKey("AppUser")]
+        public string? AppUserId {  get; set; }
 
     }
 }

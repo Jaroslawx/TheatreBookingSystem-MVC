@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using TheatreBookingSystem_MVC.Data;
 using TheatreBookingSystem_MVC.Interfaces;
 using TheatreBookingSystem_MVC.Models;
@@ -10,9 +11,13 @@ namespace TheatreBookingSystem_MVC.Controllers
     public class EventController : Controller
     {
         private readonly IEventRepository _eventRepository;
-        public EventController(IEventRepository eventRepository)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public EventController(IEventRepository eventRepository, IHttpContextAccessor httpContextAccessor )
         {
             _eventRepository = eventRepository;
+            _httpContextAccessor = httpContextAccessor;
+
         }
         public async Task<IActionResult> Index()
         {
@@ -36,6 +41,8 @@ namespace TheatreBookingSystem_MVC.Controllers
 
         public IActionResult Create()
         {
+            var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var createEventViewModel = new CreateEventViewModel { AppUserId = curUserId };
             return View();
         }
 
@@ -46,24 +53,29 @@ namespace TheatreBookingSystem_MVC.Controllers
             {
                 return View(@event);
             }
+            var curUserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            @event.AppUserId = curUserId;
             _eventRepository.Add(@event);
             return RedirectToAction("Index");
         }
         
         public async Task<IActionResult> Edit(int id)
         {
+            //var curUserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var @event = await _eventRepository.GetByIdAsync(id);
             if (@event == null) return View("Error");
             var eventVM = new EditEventViewModel
             {
                 Id = @event.Id,
                 Name = @event.Name,
+                AppUserId = @event.AppUserId,
                 Description = @event.Description,
                 Src = @event.Src,
                 EventType = @event.EventType,
                 Date = @event.Date,
                 Duration = @event.Duration,
-                RoomId = @event.RoomId
+                RoomId = @event.RoomId,
+                //AppUserId = curUserId
             };
             return View(eventVM);
         }
