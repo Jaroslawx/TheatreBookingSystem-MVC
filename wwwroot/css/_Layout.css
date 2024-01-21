@@ -1,0 +1,60 @@
+﻿
+.navbar-nav-container {
+    flex-grow: 1; /* Elementy nawigacji zajmują całe dostępne miejsce */
+    margin-left: 160px;
+}
+
+.logo{
+    max-width: 60px;
+    margin-right: 10px;
+}
+
+.navbar-title {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.navbar-nav{
+    display: inline-block;
+}
+
+.navbar-nav-container .nav-link {
+    margin-right: 20px; /* Dodaj margines z prawej strony, aby zachować odstęp między elementami */
+}
+
+.navbar-brand-container {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-login-container {
+    margin-left: auto;
+}
+.navbar {
+    background-color: rgba(18, 18, 43, 0.8);
+}
+
+.navbar-nav .nav-link {
+    color: whitesmoke; /* Domyślny kolor napisów (czarny) */
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #007bff; /* Kolor napisów po najechaniu myszką (niebieski) */
+    }
+
+.navbar-brand {
+    color: whitesmoke; /* Kolor napisu dla marki (czerwony) */
+}
+
+    .navbar-brand:hover {
+        color: #ff4500; /* Kolor napisu dla marki po najechaniu myszką (czerwony, ciemniejszy) */
+    }
+
+.navbar-login-container .nav-link {
+    color: #008000; /* Kolor napisu dla sekcji logowania (zielony) */
+}
+
+.navbar-login-container .nav-link:hover {
+        color: #006400; /* Kolor napisu dla sekcji logowania po najechaniu myszką (zielony, ciemniejszy) */
+
+}

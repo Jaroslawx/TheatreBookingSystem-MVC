@@ -4,41 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Theatre Booking System</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TheatreBookingSystem_MVC.styles.css" asp-append-version="true" />
+ @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  *@
+@*     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    @* <link rel="stylesheet" href="~/TheatreBookingSystem_MVC.styles.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Theatre Booking System</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    <ul class="navbar-collapse justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Log_in" asp-action="Index">Log in</a>
-                        </li>
-                    </ul>
+                <div class="navbar-brand-container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="path/to/your/logo.png" alt="Logo" class="logo" />
+                        Theatre Booking System
+                    </a>
+                </div>
+                <div class="navbar-nav-container">
+                    <div class="navbar-nav mx-auto">
+                        <a class="nav-link @* text-dark *@" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link " asp-area="" asp-controller="Event" asp-action="Index">Events</a>
+                        <a class="nav-link " asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
+                        <a class="nav-link " asp-area="" asp-controller="About_us" asp-action="About_us">About us</a>
+                        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <a class="nav-link " asp-area="" asp-controller="Profile" asp-action="Index">Profile</a>
+
+                    </div>
+                </div>
+                <div class="navbar-login-container">
+                    <!-- Login button -->
+                    <a class="nav-link " asp-area="" asp-controller="Log_in" asp-action="Index">Log in</a>
                 </div>
             </div>
         </nav>
