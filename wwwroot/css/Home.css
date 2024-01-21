@@ -1,0 +1,35 @@
+﻿
+.custom-button {
+    background-color: #4F4557;
+    color: #F4EEE0;
+    border-color: #4F4557;
+}
+
+    .custom-button:hover {
+        background-color: #6D5D6E;
+        color: #F4EEE0;
+    }
+
+.custom-button2 {
+    background-color: #6D5D6E;
+    color: #F4EEE0;
+    border-color: #6D5D6E;
+}
+    .custom-button2:hover {
+        background-color: #4F4557;
+        color: #F4EEE0;
+    }
+
+.intro {
+    color: #F4EEE0;
+    font-size:2.5rem;
+}
+.intro2 {
+    color: #F4EEE0;
+    font-size: 1.1rem;
+}
+
+.intro-panel{
+    padding: 0px;
+    margin: 0px;
+}

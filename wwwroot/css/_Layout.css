@@ -1,6 +1,6 @@
 ﻿
 .navbar-nav-container {
-    flex-grow: 1; /* Elementy nawigacji zajmują całe dostępne miejsce */
+    flex-grow: 1; 
     margin-left: 160px;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .navbar-nav-container .nav-link {
-    margin-right: 20px; /* Dodaj margines z prawej strony, aby zachować odstęp między elementami */
+    margin-right: 20px;
 }
 
 .navbar-brand-container {
@@ -31,30 +31,26 @@
     margin-left: auto;
 }
 .navbar {
-    background-color: rgba(18, 18, 43, 0.8);
+    background-color: rgba(244, 238, 224, 0.1);
 }
 
-.navbar-nav .nav-link {
-    color: whitesmoke; /* Domyślny kolor napisów (czarny) */
+.navbar-nav-container .nav-link {
+    color: #F4EEE0 !important; 
 }
 
-    .navbar-nav .nav-link:hover {
-        color: #007bff; /* Kolor napisów po najechaniu myszką (niebieski) */
+    .navbar-nav-container .nav-link:hover {
+        color: #6D5D6E !important;
     }
 
 .navbar-brand {
-    color: whitesmoke; /* Kolor napisu dla marki (czerwony) */
+    color: #F4EEE0 !important;
 }
 
-    .navbar-brand:hover {
-        color: #ff4500; /* Kolor napisu dla marki po najechaniu myszką (czerwony, ciemniejszy) */
-    }
-
 .navbar-login-container .nav-link {
-    color: #008000; /* Kolor napisu dla sekcji logowania (zielony) */
+    color: #F4EEE0;
 }
 
 .navbar-login-container .nav-link:hover {
-        color: #006400; /* Kolor napisu dla sekcji logowania po najechaniu myszką (zielony, ciemniejszy) */
+        color: white;
 
 }

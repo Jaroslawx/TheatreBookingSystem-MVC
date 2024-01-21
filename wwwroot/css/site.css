@@ -1,8 +1,11 @@
 
 body {
-    background-color: #12122b;
+    background-color: #393646;
     margin-bottom: 60px;
+    marigin: 0px;
+    padding: 0px;
 }
+
 /*setion, div, body, span, h1, h2, h3, h4, p, nav{
     color: #aaaa91;
 }

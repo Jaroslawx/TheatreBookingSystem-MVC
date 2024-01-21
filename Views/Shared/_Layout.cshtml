@@ -4,27 +4,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Theatre Booking System</title>
- @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  *@
-@*     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
-    @* <link rel="stylesheet" href="~/TheatreBookingSystem_MVC.styles.css" asp-append-version="true" /> *@
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TheatreBookingSystem_MVC.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div class="navbar-brand-container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">
                         <img src="path/to/your/logo.png" alt="Logo" class="logo" />
                         Theatre Booking System
                     </a>
                 </div>
                 <div class="navbar-nav-container">
                     <div class="navbar-nav mx-auto">
-                        <a class="nav-link @* text-dark *@" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="nav-link " asp-area="" asp-controller="Event" asp-action="Index">Events</a>
                         <a class="nav-link " asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
-                        <a class="nav-link " asp-area="" asp-controller="About_us" asp-action="About_us">About us</a>
                         <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         <a class="nav-link " asp-area="" asp-controller="Profile" asp-action="Index">Profile</a>
 
