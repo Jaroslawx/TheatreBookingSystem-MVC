@@ -4,6 +4,11 @@
     margin-left: 160px;
 }
 
+    .navbar-nav-container .navbar-nav {
+        display: flex;
+        align-items: center; /* Centrowanie w pionie */
+    }
+
 .logo{
     max-width: 60px;
     margin-right: 10px;
@@ -29,6 +34,9 @@
 
 .navbar-login-container {
     margin-left: auto;
+    align-items:center;
+    display: flex;
+    gap: 10px;
 }
 .navbar {
     background-color: rgba(244, 238, 224, 0.1);
@@ -50,7 +58,6 @@
     color: #F4EEE0;
 }
 
-.navbar-login-container .nav-link:hover {
-        color: white;
-
-}
+    .navbar-login-container .nav-link:hover {
+        color: #6D5D6E;
+    }
