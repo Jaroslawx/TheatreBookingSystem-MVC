@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC.Data;
+using TheatreBookingSystem_MVC.Data.Enum;
 using TheatreBookingSystem_MVC.Models;
 using TheatreBookingSystem_MVC.ViewModels;
 
@@ -14,105 +16,91 @@ public class TicketController : Controller
         _context = context;
     }
 
-    [HttpPost]
-    public IActionResult BuyTicket(TicketViewModel model)
+    public IActionResult Index(TicketViewModel model)
     {
-        // Validate model state
-        if (!ModelState.IsValid)
+        var viewModel = new TicketViewModel
         {
-            // If validation fails, return to the view with the current model
-            return View("Index", model);
-        }
-
-        // Your logic to process the ticket purchase
-        Ticket ticket = new Ticket
-        {
-            Row = model.SelectedRow,
-            Seat = model.SelectedSeat,
-            TicketType = model.SelectedTicketType,
             EventId = model.EventId,
-            PurchaserName = model.PurchaserName,
-            PurchaserEmail = model.PurchaserEmail,
+            EventName = model.EventName, // Set the actual event name or retrieve it from the database
+                                                   // Populate other properties as needed
         };
-
-        // You may want to add additional validation or business logic before saving the ticket
-        _context.Tickets.Add(ticket);
-        _context.SaveChanges();
-
-        // Display an alert using TempData
-        TempData["NotificationType"] = "success";
-        TempData["NotificationMessage"] = "Ticket purchased successfully!";
-
-        // Return to the original view
-        return View("Index", model);
+        return View(viewModel);
     }
 
-    [HttpGet]
-    public IActionResult Return(int id)
+    [HttpPost]
+    public IActionResult BuyTicket(TicketViewModel model)
+
     {
-        // Fetch the ticket for the given id from the database
-        Ticket ticket = _context.Tickets.Find(id);
+        // Check if the selected seat in the row is already occupied
+        bool isSeatOccupied = _context.Tickets
+           .Any(t => t.EventId == model.EventId && t.Row == model.SelectedRow && t.Seat == model.SelectedSeat);
 
-        // Check if the ticket is null or cannot be returned
-        if (ticket == null || !ticket.CanBeReturned())
+        if (isSeatOccupied)
         {
-            // Handle the case where the ticket cannot be returned
-            TempData["NotificationType"] = "error";
-            TempData["NotificationMessage"] = "This ticket cannot be returned.";
+            // Display an alert using TempData for the use
+            TempData["Error"] = "The selected seat is already occupied. Please choose another seat.";
 
-            // Redirect to the original view or another appropriate action
-            return RedirectToAction("Index");
+            // Redirect back to the Index view with the original model
+            return RedirectToAction("Index", model);
         }
-
-        // Create a ReturnTicketViewModel to pass data to the view
-        var returnViewModel = new ReturnTicketViewModel
+        else
         {
-            TicketId = ticket.Id,
-            EventName = ticket.Event?.Name,
-            PurchaserName = ticket.PurchaserName
-        };
 
-        // Return the view with the ReturnTicketViewModel
-        return View();
+            // Create a new Ticket object and set its properties from the model
+            Ticket newTicket = new Ticket
+            {
+                EventId = model.EventId,
+                Row = model.SelectedRow,
+                Seat = model.SelectedSeat,
+                TicketType = model.SelectedTicketType,
+                PurchaserEmail = model.PurchaserEmail,
+                PurchaserName = model.PurchaserName,
+                // Set other properties as needed
+            };
+
+            _context.Tickets.Add(newTicket);
+            _context.SaveChanges();
+
+            return View(model);
+        }
+    }
+
+    public IActionResult ReturnIndex(ReturnTicketViewModel model)
+    {
+        var viewModel = new TicketViewModel
+        {
+            EventId = model.EventId,
+            EventName = model.EventName,
+                                         
+        };
+        return View(viewModel);
     }
 
     [HttpPost]
     public IActionResult Return(ReturnTicketViewModel model)
     {
-        // Validate model state
-        if (!ModelState.IsValid)
+        // Find the ticket in the database based on the provided details
+        var existingTicket = _context.Tickets
+            .FirstOrDefault(t => t.Row == model.SelectedRow &&
+                                  t.Seat == model.SelectedSeat &&
+                                  t.PurchaserEmail == model.PurchaserEmail &&
+                                  t.PurchaserName == model.PurchaserName &&
+                                  t.TicketType == model.SelectedTicketType);
+
+        if (existingTicket != null)
         {
-            // If validation fails, return to the view with the current model
+            // Remove the ticket from the database
+            _context.Tickets.Remove(existingTicket);
+            _context.SaveChanges();
+
+            // Redirect to a suitable page (e.g., the ticket return confirmation page)
             return View(model);
         }
-
-        // Fetch the ticket for the given id from the database
-        Ticket ticket = _context.Tickets.Find(model.TicketId);
-
-        // Check if the ticket is null or cannot be returned
-        if (ticket == null || !ticket.CanBeReturned())
+        else
         {
-            // Handle the case where the ticket cannot be returned
-            TempData["NotificationType"] = "error";
-            TempData["NotificationMessage"] = "This ticket cannot be returned.";
-
-            // Redirect to the original view or another appropriate action
-            return RedirectToAction("Index");
+            TempData["Error"] = "Ticket not found. Please check the details and try again.";
+            return RedirectToAction("ReturnIndex", model);
         }
 
-        // Perform the ticket return logic
-        ticket.IsReturned = true;
-        ticket.ReturnTime = DateTime.Now;
-
-        // Update the ticket in the database
-        _context.Tickets.Update(ticket);
-        _context.SaveChanges();
-
-        // Display an alert using TempData
-        TempData["NotificationType"] = "success";
-        TempData["NotificationMessage"] = "Ticket returned successfully!";
-
-        // Redirect to the original view or another appropriate action
-        return RedirectToAction("Index");
     }
 }

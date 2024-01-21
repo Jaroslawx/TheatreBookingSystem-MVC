@@ -1,23 +1,33 @@
-﻿@model TheatreBookingSystem_MVC.ViewModels.TicketViewModel
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
 
-<h2>Buy Ticket</h2>
+@{
+    ViewData["Title"] = "Ticket Confirmation";
+}
 
-<p>Event: @Model.EventName</p>
-<p>Selected Ticket Type: @Model.SelectedTicketType</p>
-<p>Selected Row: @Model.SelectedRow</p>
-<p>Selected Seat: @Model.SelectedSeat</p>
-<p>Purchaser Name: @Model.PurchaserName</p>
-<p>Purchaser Email: @Model.PurchaserEmail</p>
+<div class="container">
+    <h1 class="my-4">Ticket Purchase Confirmation</h1>
 
-<form asp-controller="Ticket" asp-action="BuyTicket" method="post">
-    <div>
-        <label for="PurchaserName">Purchaser Name:</label>
-        <input type="text" id="PurchaserName" name="PurchaserName" />
-    </div>
-    <div>
-        <label for="PurchaserEmail">Purchaser Email:</label>
-        <input type="text" id="PurchaserEmail" name="PurchaserEmail" />
+    <div class="alert alert-success" role="alert">
+        Congratulations! Your ticket purchase was successful.
     </div>
 
-    <input type="submit" value="Purchase Ticket" />
-</form>
+    <p>
+        Thank you for choosing our service. Below are the details of your ticket purchase:
+    </p>
+
+    <ul>
+        <li><strong>Ticket Type:</strong> @Model.SelectedTicketType</li>
+        <li><strong>Row:</strong> @Model.SelectedRow</li>
+        <li><strong>Seat:</strong> @Model.SelectedSeat</li>
+        <li><strong>Purchaser Email:</strong> @Model.PurchaserEmail</li>
+        <li><strong>Purchaser Name:</strong> @Model.PurchaserName</li>
+    </ul>
+
+    <p>
+        If you have any questions or concerns, please contact our support team.
+    </p>
+</div>
