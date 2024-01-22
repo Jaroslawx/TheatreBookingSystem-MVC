@@ -27,6 +27,7 @@
                 <li>Duration: @Model.CurrentEvent.Duration</li>
             </ul>
             <a href="@Url.Action("Index", "Ticket", new { eventId = Model.CurrentEvent.Id })" class="btn btn-primary">Buy Ticket</a>
+            <a href="@Url.Action("ReturnIndex", "Ticket", new { eventId = Model.CurrentEvent.Id })" class="btn btn-primary">Return Ticket</a>
         </div>
 
     </div>

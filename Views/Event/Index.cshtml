@@ -23,6 +23,7 @@
                                     <div class="btn-group">
                                         <a type="btn btn-success" asp-controller="Event" asp-action="Detail" asp-route-id="@events[j].Id" class="btn btn-sm btn-outline-secondary">Details</a>
                                         <a type="btn btn-success" asp-controller="Ticket" asp-action="Index" asp-route-id="@events[j].Id" class="btn btn-sm btn-outline-secondary">Buy Ticket</a>
+                                        <a type="btn btn-success" asp-controller="Ticket" asp-action="ReturnIndex" asp-route-id="@events[j].Id" class="btn btn-sm btn-outline-secondary">Return Ticket</a>
                                         @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                                         {
                                             <a type="btn btn-success" asp-controller="Event" asp-action="Edit" asp-route-id="@events[j].Id" class="btn btn-sm btn-outline-secondary">Edit</a>

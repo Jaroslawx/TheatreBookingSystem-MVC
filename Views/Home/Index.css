@@ -1,0 +1,19 @@
+﻿
+#index_1 {
+    height: 300px;
+    background-color: blue;
+    background-image: linear-gradient(to right, #F6F5F6, #C6BBDD)
+}
+/* Zmiana koloru dla przycisku o klasie btn-primary */
+.btn-primary {
+    background-color: #5e5e5e; /* Ustaw kolor tła */
+    border-color: #5e5e5e; /* Ustaw kolor obramowania */
+    color: #ffffff; /* Ustaw kolor tekstu */
+}
+
+/* Zmiana koloru dla przycisku o klasie btn-secondary */
+.btn-secondary {
+    background-color: #848478; /* Ustaw kolor tła */
+    border-color: #848478; /* Ustaw kolor obramowania */
+    color: #ffffff; /* Ustaw kolor tekstu */
+}
