@@ -6,7 +6,7 @@
 
     .navbar-nav-container .navbar-nav {
         display: flex;
-        align-items: center; /* Centrowanie w pionie */
+        align-items: center;
     }
 
 .logo{

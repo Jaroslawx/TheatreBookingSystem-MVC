@@ -8,5 +8,10 @@ namespace TheatreBookingSystem_MVC.Controllers
         {
             return View();
         }
+
+        public IActionResult ProfileSettings()
+        {
+            return View();
+        }
     }
 }
