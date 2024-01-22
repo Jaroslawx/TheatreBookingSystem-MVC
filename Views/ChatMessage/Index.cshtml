@@ -1,0 +1,34 @@
+﻿@model List<ChatMessage>
+
+<h2>User Chat</h2>
+
+<div>
+    <h4>Your Messages</h4>
+   @*  <ul>
+        @foreach (var message in Model)
+        {
+            <li>
+                <strong>@message.Title:</strong> @message.Message
+                @if (message.Replies.Any())
+                {
+                    <ul>
+                        @foreach (var reply in message.Replies)
+                        {
+                            <li><strong>@reply.Title:</strong> @reply.Message</li>
+                        }
+                    </ul>
+                }
+            </li>
+        }
+    </ul> *@
+</div>
+
+@* <div>
+    <h4>Write a Message</h4>
+    <form asp-controller="ChatMessage" asp-action="SendMessage" method="post">
+        <textarea name="message" rows="3" cols="40"></textarea>
+        <br />
+        <input type="submit" value="Send" />
+    </form>
+</div>
+ *@

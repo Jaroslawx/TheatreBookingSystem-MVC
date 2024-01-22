@@ -18,6 +18,7 @@ namespace TheatreBookingSystem_MVC.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

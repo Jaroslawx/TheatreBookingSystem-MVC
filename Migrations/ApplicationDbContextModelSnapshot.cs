@@ -242,6 +242,39 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.ToTable("Buildings");
                 });
 
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.ChatMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ChatMessageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatMessageId");
+
+                    b.ToTable("ChatMessages");
+                });
+
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Event", b =>
                 {
                     b.Property<int?>("Id")
@@ -249,6 +282,9 @@ namespace TheatreBookingSystem_MVC.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
@@ -514,6 +550,13 @@ namespace TheatreBookingSystem_MVC.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.ChatMessage", b =>
+                {
+                    b.HasOne("TheatreBookingSystem_MVC.Models.ChatMessage", null)
+                        .WithMany("Replies")
+                        .HasForeignKey("ChatMessageId");
+                });
+
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Event", b =>
                 {
                     b.HasOne("TheatreBookingSystem_MVC.Models.Room", "Room")
@@ -598,6 +641,11 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Navigation("Reservations");
 
                     b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.ChatMessage", b =>
+                {
+                    b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
         }
