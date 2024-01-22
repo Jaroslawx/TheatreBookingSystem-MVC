@@ -12,20 +12,6 @@ namespace TheatreBookingSystem_MVC.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Actors",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Actors", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -77,6 +63,20 @@ namespace TheatreBookingSystem_MVC.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Buildings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Participants",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Participants", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,6 +193,7 @@ namespace TheatreBookingSystem_MVC.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<int>(type: "int", nullable: true),
                     Seats = table.Column<int>(type: "int", nullable: true),
+                    SeatsReserved = table.Column<int>(type: "int", nullable: true),
                     BuildingId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -256,27 +257,27 @@ namespace TheatreBookingSystem_MVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Casts",
+                name: "Performers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EventId = table.Column<int>(type: "int", nullable: true),
-                    ActorId = table.Column<int>(type: "int", nullable: true)
+                    ParticipantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Casts", x => x.Id);
+                    table.PrimaryKey("PK_Performers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Casts_Actors_ActorId",
-                        column: x => x.ActorId,
-                        principalTable: "Actors",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Casts_Events_EventId",
+                        name: "FK_Performers_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Performers_Participants_ParticipantId",
+                        column: x => x.ParticipantId,
+                        principalTable: "Participants",
                         principalColumn: "Id");
                 });
 
@@ -322,6 +323,7 @@ namespace TheatreBookingSystem_MVC.Migrations
                     Price = table.Column<float>(type: "real", nullable: true),
                     PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TicketId = table.Column<int>(type: "int", nullable: true),
+                    IsReturned = table.Column<bool>(type: "bit", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -336,7 +338,8 @@ namespace TheatreBookingSystem_MVC.Migrations
                         name: "FK_Transactions_Tickets_TicketId",
                         column: x => x.TicketId,
                         principalTable: "Tickets",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -379,19 +382,19 @@ namespace TheatreBookingSystem_MVC.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Casts_ActorId",
-                table: "Casts",
-                column: "ActorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Casts_EventId",
-                table: "Casts",
-                column: "EventId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Events_RoomId",
                 table: "Events",
                 column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Performers_EventId",
+                table: "Performers",
+                column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Performers_ParticipantId",
+                table: "Performers",
+                column: "ParticipantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_AppUserId",
@@ -448,7 +451,7 @@ namespace TheatreBookingSystem_MVC.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Casts");
+                name: "Performers");
 
             migrationBuilder.DropTable(
                 name: "Reservations");
@@ -460,7 +463,7 @@ namespace TheatreBookingSystem_MVC.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Actors");
+                name: "Participants");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

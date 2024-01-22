@@ -12,7 +12,7 @@ using TheatreBookingSystem_MVC.Data;
 namespace TheatreBookingSystem_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240115135950_InitialCreate")]
+    [Migration("20240122114247_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -158,25 +158,6 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Actor", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Actors");
-                });
-
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -264,32 +245,6 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.ToTable("Buildings");
                 });
 
-            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Cast", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
-
-                    b.Property<int?>("ActorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActorId");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("Casts");
-                });
-
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Event", b =>
                 {
                     b.Property<int?>("Id")
@@ -324,6 +279,51 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Participant", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Participants");
+                });
+
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Performer", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParticipantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("ParticipantId");
+
+                    b.ToTable("Performers");
                 });
 
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Reservation", b =>
@@ -370,6 +370,9 @@ namespace TheatreBookingSystem_MVC.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("Seats")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SeatsReserved")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -442,6 +445,9 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
+
                     b.Property<float?>("Price")
                         .HasColumnType("real");
 
@@ -511,21 +517,6 @@ namespace TheatreBookingSystem_MVC.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Cast", b =>
-                {
-                    b.HasOne("TheatreBookingSystem_MVC.Models.Actor", "Actor")
-                        .WithMany()
-                        .HasForeignKey("ActorId");
-
-                    b.HasOne("TheatreBookingSystem_MVC.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId");
-
-                    b.Navigation("Actor");
-
-                    b.Navigation("Event");
-                });
-
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Event", b =>
                 {
                     b.HasOne("TheatreBookingSystem_MVC.Models.Room", "Room")
@@ -535,10 +526,25 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Navigation("Room");
                 });
 
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Performer", b =>
+                {
+                    b.HasOne("TheatreBookingSystem_MVC.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("TheatreBookingSystem_MVC.Models.Participant", "Participant")
+                        .WithMany()
+                        .HasForeignKey("ParticipantId");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Participant");
+                });
+
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Reservation", b =>
                 {
                     b.HasOne("TheatreBookingSystem_MVC.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Reservations")
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("TheatreBookingSystem_MVC.Models.Room", "Room")
@@ -562,7 +568,7 @@ namespace TheatreBookingSystem_MVC.Migrations
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Ticket", b =>
                 {
                     b.HasOne("TheatreBookingSystem_MVC.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("TheatreBookingSystem_MVC.Models.Event", "Event")
@@ -582,11 +588,19 @@ namespace TheatreBookingSystem_MVC.Migrations
 
                     b.HasOne("TheatreBookingSystem_MVC.Models.Ticket", "Ticket")
                         .WithMany()
-                        .HasForeignKey("TicketId");
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("AppUser");
 
                     b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.AppUser", b =>
+                {
+                    b.Navigation("Reservations");
+
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }
