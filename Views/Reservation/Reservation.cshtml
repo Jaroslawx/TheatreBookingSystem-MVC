@@ -1,0 +1,70 @@
+﻿
+@model List<Event>
+
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Welcome in our reservations!</title>
+
+</head>
+<body>
+
+    <div class="container mt-5">
+        
+        @foreach (var Event in Model)
+        {
+            <div class="my-3 py-3">
+                <h2 class="display-5">@Event.Name</h2>
+                <p class="lead">@Event.Description</p>
+                <p class="lead">@Event.Date</p>
+            </div>
+        }
+
+        <form>
+           
+            <div class="mb-3">
+                <label for="first-name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first-name" required>
+            </div>
+            <div class="mb-3">
+                <label for="last-name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last-name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="street" class="form-label">Street</label>
+                <input type="text" class="form-control" id="street" required>
+            </div>
+            <div class="mb-3">
+                <label for="apartment-number" class="form-label">Apartment Number</label>
+                <input type="text" class="form-control" id="apartment-number">
+            </div>
+            <div class="mb-3">
+                <label for="postal-code" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" id="postal-code" required>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone-number" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone-number" required>
+            </div>
+
+        </form>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapłać</button>
+</body>
+
+<body>
+    <hr class="my-4">
+    <p class="lead">The reservation system features a user-friendly interface for easy booking. You can securely log in, check real-time seat availability through interactive seating charts. The booking process is streamlined, with secure online payment options and the ability to apply promotions or discounts. Thank you for using Theatre Booking System!</p>
+</body>
+

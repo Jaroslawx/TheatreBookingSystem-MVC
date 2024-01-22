@@ -19,8 +19,8 @@
                     <h1 class="fw-light intro">Welcome to Our Theathre World</h1>
                     <p class="lead text-body-secondary intro2">I'm glad you're here! Our platform is not just a place where you can book tickets to high-quality theater performances; it's a space that opens the doors to the magical world of art.</p>
                     <p>
-                        <a href="Event" class="btn btn-primary my-2 custom-button">Show all Events</a>
-                        <a href="Reservations" class="btn btn-secondary my-2 custom-button2">Show your reservations</a>
+                        <a href="@Url.Action("Index", "Event")" class="btn btn-primary my-2 custom-button">Show all Events</a>
+                        <a href="@Url.Action("Reservations", "Event")" class="btn btn-secondary my-2 custom-button2">Show your reservations</a>
                     </p>
                 </div>
             </div>
@@ -29,37 +29,37 @@
 
 
 <!--About us-->
-<section class="container mt-4">
-    <div class="row">
+<section class="container mt-4 about-us">
+    <div class="row custom-margin">
         <article class="col-md-6">
             <h2>What do you dream of?</h2>
             <p>Whether it's a show that sends shivers down your spine, a comedy that makes you laugh until you cry, or a drama that touches your heart – we have something exceptional for you. Our website is not just a booking system; it's a virtual gateway to a world where emotions, history, and acting talent merge into unforgettable spectacles.</p>
         </article>
         <figure class="col-md-6">
-                <img src="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705859837/cld-sample-2.jpg" class="img-fluid" alt="Image">
+                <img src="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705876663/pdf1_dkvzb6.jpg" class="img-fluid" alt="Image">
         </figure>
     </div>
-    <div class="row">
+    <div class="row custom-margin">
         <figure class="col-md-6">
-            <img src="Images\daz.jpg" class="img-fluid" alt="Image">
+                <img src="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705876664/pdf3_s9dnly.jpg" class="img-fluid" alt="Image">
         </figure>
         <article class="col-md-6">
             <h2>Your Seat, Your Experience</h2>
             <p>Your interests are our priority. That's why we've created an interactive platform that not only enables convenient ticket reservations but also suggests performances tailored to your preferences. Our team ensures that each of your theater experiences is unique.</p>
         </article>
     </div>
-    <div class="row">
+    <div class="row custom-margin">
         <article class="col-md-6">
             <h2>Join the Theater Community</h2>
             <p>It's more than just watching performances; it's being part of a community of art enthusiasts. That's why we invite you to our world, where you can share your impressions, discuss art, and nurture your passion alongside other theater lovers.</p>
         </article>
         <figure class="col-md-6">
-            <img src="Images\daz.jpg" class="img-fluid" alt="Image">
+                <img src="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705878337/pdf8_ewgsa3.jpg" class="img-fluid" alt="Image">
         </figure>
     </div>
-    <div class="row">
+    <div class="row custom-margin">
         <figure class="col-md-6">
-            <img src="Images\daz.jpg" class="img-fluid" alt="Image">
+                <img src="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705878338/pdf9_yqovmp.jpg" class="img-fluid" alt="Image">
         </figure>
         <article class="col-md-6">
             <h2>Open the Doors to Emotions!</h2>
@@ -78,15 +78,17 @@
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="#55595c" />
-                        <image href="\Images\zdjecie.jpg" width="100%" height="100%" alt="Event"/>
+                            <image href="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705879077/pdf17_resized.jpg" width="100%" height="100%" alt="Event" class="img-fluid" />
                     </svg>
                     <div class="card-body">
-                        <p class="card-text">Short event description</p>
+                            <p class="card-text">
+                                ICFS Presents: Hundreds of Beavers w/Organ Concert
+                            </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            </div>
-                            <small class="text-body-secondary">xxx</small>
+                                    <a href="@Url.Action("Details", "Event", new { id = 1 })" class="btn btn-sm btn-outline-secondary">Show</a>
+                                </div>
+                            <small class="text-body-secondary">2024</small>
                         </div>
                     </div>
                 </div>
@@ -96,15 +98,15 @@
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="#55595c" />
-                        <image href="\Images\zdjecie.jpg" width="100%" height="100%" alt="Event" />
+                            <image href="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705878347/pdf16_pages-to-jpg-0001_vgaih7.jpg" width="100%" height="100%" alt="Event" class="img-fluid"/>
                     </svg>
                     <div class="card-body">
-                        <p class="card-text">Short event description</p>
+                            <p class="card-text">THE CRY OF WINNIE MANDELA</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <a href="@Url.Action("Details", "Event", new { id = 1 })" class="btn btn-sm btn-outline-secondary">Show</a>
                             </div>
-                            <small class="text-body-secondary">xxx</small>
+                            <small class="text-body-secondary">2024</small>
                         </div>
                     </div>
                 </div>
@@ -114,15 +116,15 @@
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
                         <rect width="100%" height="100%" fill="#55595c" />
-                        <image href="\Images\zdjecie.jpg" width="100%" height="100%" alt="Event" />
+                            <image href="https://res.cloudinary.com/dm7llcc1b/image/upload/v1705878340/pdf12_pages-to-jpg-0001_hewkjr.jpg" width="100%" height="100%" alt="Event" class="img-fluid" />
                     </svg>
                     <div class="card-body">
-                        <p class="card-text">Short event description</p>
+                        <p class="card-text">Swan Lake Performance by Our Theatre Group</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <a href="@Url.Action("Details", "Event", new { id = 1 })" class="btn btn-sm btn-outline-secondary">Show</a>
                             </div>
-                            <small class="text-body-secondary">xxx</small>
+                            <small class="text-body-secondary">2024</small>
                         </div>
                     </div>
                 </div>

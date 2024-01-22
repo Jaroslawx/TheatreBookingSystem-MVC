@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Net;
 using TheatreBookingSystem_MVC.Data.Enum;
 using TheatreBookingSystem_MVC.Models;
 using static System.Net.WebRequestMethods;
@@ -90,7 +91,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "A classic musical by Andrew Lloyd Webber",
                             Src = "https://i.ytimg.com/vi/F1nmDJmMvUc/maxresdefault.jpg",
                             EventType = EventType.Musical,
-                            Date = new DateTime(2023, 12, 13),
+                            Date = new DateTime(2023, 12, 13, 19, 0, 0),
                             Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(30)),
                             RoomId = 1
                         },
@@ -100,7 +101,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "An unforgettable night with iconic 80s rock hits",
                             Src = "https://techaeris.com/wp-content/uploads/2023/08/80s-Rock-Bands.jpg",
                             EventType = EventType.Concert,
-                            Date = new DateTime(2023, 12, 15),
+                            Date = new DateTime(2023, 12, 15, 20, 0, 0),
                             Duration = TimeSpan.FromHours(3),
                             RoomId = 2
                         },
@@ -110,7 +111,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "To be or not to be...",
                             Src = "https://i.ytimg.com/vi/6_Y-tYrGBDc/maxresdefault.jpg",
                             EventType = EventType.Play,
-                            Date = new DateTime(2023, 12, 17),
+                            Date = new DateTime(2023, 12, 17, 19, 30, 0),
                             Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(45)),
                             RoomId = 1
                         },
@@ -120,7 +121,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "A night of smooth jazz paying tribute to the legendary Miles Davis",                            
                             Src = "https://variety.com/wp-content/uploads/2010/01/miles-davis.jpg?w=1000&h=563&crop=1",
                             EventType = EventType.Concert,
-                            Date = new DateTime(2023, 12, 19),
+                            Date = new DateTime(2023, 12, 19, 21, 0, 0),
                             Duration = TimeSpan.FromHours(2),
                             RoomId = 4
                         },
@@ -130,7 +131,7 @@ namespace TheatreBookingSystem_MVC.Data
                             Description = "A timeless ballet performance",
                             Src = "https://assets.classicfm.com/2012/31/swan-lake-at-the-coliseum---london-1343916817-view-0.jpg",
                             EventType = EventType.Other,
-                            Date = new DateTime(2023, 12, 20),
+                            Date = new DateTime(2023, 12, 20, 18, 30, 0),
                             Duration = TimeSpan.FromHours(2).Add(TimeSpan.FromMinutes(15)),
                             RoomId = 5
                         }
@@ -139,116 +140,177 @@ namespace TheatreBookingSystem_MVC.Data
                     context.SaveChanges();
                 }
 
-                if (!context.Actors.Any())
+                if (!context.Participants.Any())
                 {
-                    context.Actors.AddRange(new List<Actor>()
+                    context.Participants.AddRange(new List<Participant>()
                     {
-                        new Actor
+                        new Participant
                         {
                             Name = "Michael",
                             Surname = "Crawford"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Sarah",
                             Surname = "Brightman"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Steve",
                             Surname = "Perry"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Neal",
                             Surname = "Schon"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Jonathan",
                             Surname = "Cain"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Ross",
                             Surname = "Valory"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Steve",
                             Surname = "Smith"
                         },
-                        new Actor
+                        new Participant
                         {
                             Name = "Hamlet",
                             Surname = "Hamlet"
                         },
+                        new Participant
+                        {
+                            Name = "John",
+                            Surname = "Doe"
+                        },
+                        new Participant
+                        {
+                            Name = "Jane",
+                            Surname = "Doe"
+                        },
+                        new Participant
+                        {
+                            Name = "Alice",
+                            Surname = "Johnson"
+                        },
 
                     });
                     context.SaveChanges();
                 }
 
-                if (!context.Casts.Any())
+                if (!context.Performers.Any())
                 {
-                    context.Casts.AddRange(new List<Cast>()
+                    context.Performers.AddRange(new List<Performer>()
                     {
-                        new Cast
+                        new Performer
                         {
                             Role = "The Phantom",
                             EventId = 1,
-                            ActorId = 1
+                            ParticipantId = 1
                         },
-                        new Cast
+                        new Performer
                         {
                             Role = "Christine Daaé",
                             EventId = 1,
-                            ActorId = 2
+                            ParticipantId = 2
                         },
-                        new Cast
+                        new Performer
                         {
                             Role = "Raoul, Vicomte de Chagny",
                             EventId = 1,
-                            ActorId = 3
+                            ParticipantId = 3
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Count Philippe de Chagny",
-                            EventId = 1,
-                            ActorId = 4
+                            Role = "Lead Guitarist",
+                            EventId = 2,
+                            ParticipantId = 4
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Carlotta Giudicelli",
-                            EventId = 1,
-                            ActorId = 5
+                            Role = "Lead Singer",
+                            EventId = 2,
+                            ParticipantId = 5
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Monsieur Richard Firmin",
-                            EventId = 1,
-                            ActorId = 6
+                            Role = "Pianist",
+                            EventId = 3,
+                            ParticipantId = 6
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Monsieur Gilles André",
-                            EventId = 1,
-                            ActorId = 7
+                            Role = "Jazz Trumpeter",
+                            EventId = 4,
+                            ParticipantId = 7
                         },
-                        new Cast
+                        new Performer
                         {
-                            Role = "Ubaldo Piangi",
-                            EventId = 1,
-                            ActorId = 8
+                            Role = "Ballet Dancer",
+                            EventId = 5,
+                            ParticipantId = 8
                         },
-                        
-
                     });
                     context.SaveChanges();
                 }
-
 
 
             }
         }
+
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                //Roles
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+                //Users
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+                string adminUserEmail = "xxxviroxxx@wp.pl";
+
+                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+                if (adminUser == null)
+                {
+                    var newAdminUser = new AppUser()
+                    {
+                        UserName = "Admin",
+                        Email = adminUserEmail,
+                        EmailConfirmed = true,
+                    };
+                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+                }
+
+                string appUserEmail = "user@etickets.com";
+
+                var appUser = await userManager.FindByEmailAsync(appUserEmail);
+                if (appUser == null)
+                {
+                    var newAppUser = new AppUser()
+                    {
+                        UserName = "app-user",
+                        Email = appUserEmail,
+                        EmailConfirmed = true,
+                    };
+                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+                }
+            }
+        }
+
+
+
     }
 }
