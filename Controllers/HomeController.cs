@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using System.Diagnostics;
-//using System.Globalization;
-//using System.Net;
+using System.Globalization;
+using System.Net;
 using TheatreBookingSystem_MVC.Models;
 
 namespace TheatreBookingSystem_MVC.Controllers

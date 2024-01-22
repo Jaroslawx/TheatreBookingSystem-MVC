@@ -1,20 +1,13 @@
-﻿@model TheatreBookingSystem_MVC.ViewModels.TicketViewModel
+﻿@model TheatreBookingSystem_MVC.ViewModels.ReturnTicketViewModel
 
 
 
 <div class="container">
-    <h1 class="my-4">Buy Ticket for @Model.EventName</h1>
+    <h1 class="my-4">Return Ticket for @Model.EventName</h1>
 
-    @using (Html.BeginForm("BuyTicket", "Ticket", FormMethod.Post))
+    @using (Html.BeginForm("Return", "Ticket", FormMethod.Post))
     {
         @Html.HiddenFor(model => model.EventId)
-
-        <select id="ticketType" name="SelectedTicketType">
-            <option value="Normal">Normal</option>
-            <option value="Student">Student</option>
-            <option value="Senior">Senior</option>
-            <option value="Child">Child</option>
-        </select>
 
         <div class="form-group">
             @Html.LabelFor(model => model.SelectedRow, "Row")
