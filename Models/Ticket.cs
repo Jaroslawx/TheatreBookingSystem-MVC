@@ -33,6 +33,7 @@ namespace TheatreBookingSystem_MVC.Models
 
         public bool CanBeReturned()
         {
+
             // Check if the current time is at least 2 days before the event
             return IsPurchased && Event?.Date != null && DateTime.Now < Event.Date.Value.AddDays(-2);
         }

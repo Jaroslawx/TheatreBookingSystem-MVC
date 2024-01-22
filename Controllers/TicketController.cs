@@ -84,6 +84,7 @@ public class TicketController : Controller
                 TicketType = model.SelectedTicketType,
                 PurchaserEmail = model.PurchaserEmail,
                 PurchaserName = model.PurchaserName,
+                IsPurchased = true,
 
             };
 
@@ -130,6 +131,7 @@ public class TicketController : Controller
         {
             // Update the ticket's IsReturned property
             existingTicket.IsReturned = true;
+            existingTicket.IsPurchased = false;
             existingTicket.ReturnTime = DateTime.Now;
 
             // Create a new Transaction object and set its properties
@@ -137,6 +139,7 @@ public class TicketController : Controller
             {
                 PurchaseDate = DateTime.Now,
                 Ticket = existingTicket,
+                IsReturned = true,
             };
 
             // Save the updated ticket and the new transaction in the database

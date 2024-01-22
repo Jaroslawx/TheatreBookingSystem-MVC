@@ -14,6 +14,7 @@ else
                 <th>Ticket Type</th>
                 <th>Row</th>
                 <th>Seat</th>
+                <th>Transaction Type</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,16 @@ else
                     <td>@transaction.Ticket.TicketType</td>
                     <td>@transaction.Ticket.Row</td>
                     <td>@transaction.Ticket.Seat</td>
+                    <td>
+                        @if (transaction.IsReturned)
+                        {
+                            <span>Return</span>
+                        }
+                        else
+                        {
+                            <span>Purchase</span>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
