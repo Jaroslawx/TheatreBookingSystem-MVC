@@ -1,18 +1,15 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body {
-  margin-bottom: 60px;
+    background-color: #393646;
+    margin-bottom: 60px;
+    marigin: 0px;
+    padding: 0px;
+}
+
+h1, h2, h3, h4, h4, h6 {
+    color: #F4EEE0;
+}
+
+a {
+    color: #6D5D6E;
 }

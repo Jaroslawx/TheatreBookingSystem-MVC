@@ -8,9 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Home\Index.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Compile Remove="Images\**" />
     <Compile Remove="Views\NewFolder1\**" />
+    <Content Remove="Images\**" />
     <Content Remove="Views\NewFolder1\**" />
+    <EmbeddedResource Remove="Images\**" />
     <EmbeddedResource Remove="Views\NewFolder1\**" />
+    <None Remove="Images\**" />
     <None Remove="Views\NewFolder1\**" />
   </ItemGroup>
 

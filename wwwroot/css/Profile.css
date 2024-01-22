@@ -1,0 +1,11 @@
+﻿
+.edit-btn {
+    border-color: #6D5D6E;
+    color: #6D5D6E;
+}
+
+    .edit-btn:hover {
+        color: #F4EEE0; 
+        background-color: #6D5D6E; 
+        border-color: #6D5D6E;
+    }
