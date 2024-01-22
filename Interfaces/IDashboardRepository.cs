@@ -4,7 +4,7 @@ namespace TheatreBookingSystem_MVC.Interfaces
 {
     public interface IDashboardRepository
     {
-        Task<List<IEventRepository>> GetAllUserEvents();
-        Task<List<IEventRepository>> GetAllEvents();
+        Task<List<Event>> GetAllUserEvents();
+        Task<List<Event>> GetAllEvents();
     }
 }
