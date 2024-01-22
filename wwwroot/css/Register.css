@@ -1,0 +1,17 @@
+﻿
+.reg-txt {
+    color: #F4EEE0;
+    margin:1.5rem;
+}
+
+label {
+    color: #F4EEE0;
+}
+
+input {
+    background-color: #F4EEE0;
+}
+
+.form-grup .control-label{
+    margin:100px;
+}
