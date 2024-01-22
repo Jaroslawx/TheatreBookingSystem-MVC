@@ -369,6 +369,9 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<int?>("Seats")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SeatsReserved")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BuildingId");
@@ -390,6 +393,26 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Property<int?>("EventId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsPurchased")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PurchaseTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PurchaserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurchaserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReturnTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("Row")
                         .HasColumnType("int");
 
@@ -406,6 +429,38 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.HasIndex("EventId");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Transaction", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
+
+                    b.Property<float?>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -520,6 +575,22 @@ namespace TheatreBookingSystem_MVC.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Event");
+                });
+
+            modelBuilder.Entity("TheatreBookingSystem_MVC.Models.Transaction", b =>
+                {
+                    b.HasOne("TheatreBookingSystem_MVC.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("TheatreBookingSystem_MVC.Models.Ticket", "Ticket")
+                        .WithMany()
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("TheatreBookingSystem_MVC.Models.AppUser", b =>

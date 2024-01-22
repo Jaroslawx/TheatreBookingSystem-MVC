@@ -1,0 +1,14 @@
+﻿@model TheatreBookingSystem_MVC.Models.Transaction
+
+<h1>Enter Email to View Transactions</h1>
+
+@using (Html.BeginForm("Transaction", "Transaction", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="purchaserEmail">Enter Email:</label>
+        <input type="text" id="purchaserEmail" name="purchaserEmail" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">View Transactions</button>
+}
+
