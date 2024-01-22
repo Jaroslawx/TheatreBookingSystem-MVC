@@ -5,6 +5,7 @@ using TheatreBookingSystem_MVC.Interfaces;
 using TheatreBookingSystem_MVC.Models;
 using TheatreBookingSystem_MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TheatreBookingSystem_MVC.Controllers
 {
@@ -14,6 +15,7 @@ namespace TheatreBookingSystem_MVC.Controllers
         public ReservationController(IReservationRepository reservationRepository)
         {
             _reservationRepository = reservationRepository;
+           
         }
 
         public async Task<IActionResult> Index(string userId)

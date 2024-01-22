@@ -40,6 +40,19 @@ namespace TheatreBookingSystem_MVC.Repository
             return await _context.Events.Where(n => n.Name == name).ToListAsync();
         }
 
+        public async Task<IEnumerable<Event>> GetEventWithout(int id)
+        {
+            return await _context.Events.Where(i => i.Id != id).ToListAsync();
+        }
+
+        public async Task<string> GetEventNameById(int id)
+        {
+            var @event = await _context.Events.FirstOrDefaultAsync(i => i.Id == id);
+
+            return @event?.Name ?? "Event not found";
+        }
+
+
         public bool Save()
         {
             var saved = _context.SaveChanges();

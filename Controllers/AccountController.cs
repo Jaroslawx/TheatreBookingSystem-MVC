@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using TheatreBookingSystem_MVC.Configuration;
 using TheatreBookingSystem_MVC.Data;
 using TheatreBookingSystem_MVC.Models;
+using TheatreBookingSystem_MVC.Services.Email;
 using TheatreBookingSystem_MVC.ViewModels;
 
 namespace TheatreBookingSystem_MVC.Controllers
@@ -11,6 +15,7 @@ namespace TheatreBookingSystem_MVC.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ApplicationDbContext _context;
+        private IOptions<SmtpSettings> _smtpSettings;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ApplicationDbContext context)
         {
@@ -88,13 +93,82 @@ namespace TheatreBookingSystem_MVC.Controllers
             return RedirectToAction("Index", "Event");
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Event");
         }
 
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel forgotPasswordViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(forgotPasswordViewModel.Email);
+                if (user == null)
+                {
+                    // User not found
+                    TempData["Error"] = "User not found";
+                    return View(forgotPasswordViewModel);
+                }
+
+                string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var passwordResetLink = Url.Action("ResetPassword", "Account", new { email = forgotPasswordViewModel.Email, token = token }, Request.Scheme);
+
+                var emailSender = new EmailSender(_smtpSettings);
+                await emailSender.SendEmailAsync(user.Email, "Password reset", $"Click <a href=\"{passwordResetLink}\">here</a> to reset your password");
+
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            }
+            
+
+            return View(forgotPasswordViewModel);
+        }
+
+        [AllowAnonymous]
+        public IActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string token)
+        {
+            return token == null ? View("Error") : View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPasswordViewModel)
+        {
+            if (!ModelState.IsValid) return View(resetPasswordViewModel);
+
+            var user = await _userManager.FindByEmailAsync(resetPasswordViewModel.Email);
+            if (user == null)
+            {
+                // User not found
+                TempData["Error"] = "User not found";
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+
+            var resetPasswordResult = await _userManager.ResetPasswordAsync(user, resetPasswordViewModel.Token, resetPasswordViewModel.Password);
+            if (resetPasswordResult.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation", "Account");
+            }
+
+            return View();
+        }
 
     }
 }
