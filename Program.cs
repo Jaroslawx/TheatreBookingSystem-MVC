@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TheatreBookingSystem_MVC;
 using TheatreBookingSystem_MVC.Data;
+using TheatreBookingSystem_MVC.Helpers;
 using TheatreBookingSystem_MVC.Interfaces;
 using TheatreBookingSystem_MVC.Models;
 using TheatreBookingSystem_MVC.Repository;
@@ -12,6 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IPerformerRepository, PerformerRepository>();
