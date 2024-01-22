@@ -12,7 +12,7 @@ using TheatreBookingSystem_MVC.Data;
 namespace TheatreBookingSystem_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231222112408_InitialCreate")]
+    [Migration("20240122075550_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

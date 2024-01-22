@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using System.Diagnostics;
+using System.Globalization;
+using System.Net;
 using TheatreBookingSystem_MVC.Models;
 
 namespace TheatreBookingSystem_MVC.Controllers
@@ -8,10 +11,16 @@ namespace TheatreBookingSystem_MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        //private readonly UserManager<AppUser> _userManager;
+        //private readonly SignInManager<AppUser> _signInManager;
+        //private readonly IConfiguration _config;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            //_userManager = userManager;
+            //_signInManager = signInManager;
+            //_config = config;
         }
 
         public IActionResult Index()

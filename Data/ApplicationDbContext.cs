@@ -29,9 +29,6 @@ namespace TheatreBookingSystem_MVC.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
     }
-
-
 
 }
