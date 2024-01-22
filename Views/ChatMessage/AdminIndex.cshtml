@@ -1,0 +1,46 @@
+﻿<!-- Admin's Chat View (AdminIndex.cshtml): -->
+
+<h2>Admin Chat</h2>
+
+<div>
+    <h4>Users</h4>
+    <ul>
+        @foreach (var user in Model)
+        {
+            <li>
+                <a asp-controller="ChatMessage" asp-action="GetUserMessages" asp-route-userId="@user.Id">@user.UserName</a>
+            </li>
+        }
+    </ul>
+</div>
+
+<div>
+    <h4>Selected User Messages</h4>
+    <ul>
+        @if (Model.Count > 0)
+        {
+            foreach (var message in Model[0].ChatMessages)
+            {
+                <li>
+                    <strong>@message.Title:</strong> @message.Message
+                    @if (message.Replies.Any())
+                    {
+                        <ul>
+                            @foreach (var reply in message.Replies)
+                            {
+                                <li><strong>@reply.Title:</strong> @reply.Message</li>
+                            }
+                        </ul>
+                    }
+                    <div>
+                        <a asp-controller="ChatMessage" asp-action="AdminReply" asp-route-messageId="@message.Id">Reply</a>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <li>No user selected.</li>
+        }
+    </ul>
+</div>

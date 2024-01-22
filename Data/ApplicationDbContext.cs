@@ -17,5 +17,6 @@ namespace TheatreBookingSystem_MVC.Data
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
     }
 }

@@ -8,6 +8,12 @@
 @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
 {
     <a type="button" class="btn btn-primary" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+    <a type="button" class="btn btn-primary" asp-area="" asp-controller="ChatMessage" asp-action="AdminIndex">Chat Panel</a>
+
+}
+else if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+{
+    <a type="button" class="btn btn-primary" asp-area="" asp-controller="ChatMessage" asp-action="Index">Chat</a>
 }
 <div class="album py-5 bg-light">
     <div class="container">
