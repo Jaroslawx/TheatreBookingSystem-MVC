@@ -17,6 +17,19 @@ namespace TheatreBookingSystem_MVC.Data
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.Ticket)
+                .WithMany()
+                .HasForeignKey(t => t.TicketId)
+                .OnDelete(DeleteBehavior.Restrict); // This line prevents cascading delete
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
+
 }
