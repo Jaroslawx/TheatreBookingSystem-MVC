@@ -16,7 +16,7 @@ namespace TheatreBookingSystem_MVC.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<Reservation>> GetAll(int userId)
+        public async Task<IEnumerable<Reservation>> GetAll(string userId)
         {
             return await _context.Reservations.Where(r => r.AppUserId == userId).ToListAsync();
         }

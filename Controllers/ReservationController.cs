@@ -1,18 +1,24 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using TheatreBookingSystem_MVC.Data;
+using TheatreBookingSystem_MVC.Interfaces;
+using TheatreBookingSystem_MVC.Models;
+using TheatreBookingSystem_MVC.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TheatreBookingSystem_MVC.Controllers
 {
     public class ReservationController : Controller
     {
         private readonly IReservationRepository _reservationRepository;
-        public EventController(IEventRepository reservationRepository)
+        public ReservationController(IReservationRepository reservationRepository)
         {
             _reservationRepository = reservationRepository;
         }
 
-        public async Task<IActionResult> Index(int userId)
+        public async Task<IActionResult> Index(string userId)
         {
-            IEnumerable<Event> reservations = await _reservationRepository.GetAll(int userId);
+            IEnumerable<Reservation> reservations = await _reservationRepository.GetAll(userId);
             return View(reservations);
         }
 
@@ -62,10 +68,10 @@ namespace TheatreBookingSystem_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var @reservation = await _reservationRepository.GetByIdAsync(id);
-            if (@reservation == null) return View("Error");
+            var reservation = await _reservationRepository.GetByIdAsync(id);
+            if (reservation == null) return View("Error") as IActionResult;
 
-            _reservationRepository.Delete(@reservation);
+            _reservationRepository.Delete(reservation);
             return RedirectToAction("Index");
         }
 

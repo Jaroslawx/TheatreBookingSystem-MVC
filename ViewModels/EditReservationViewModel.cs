@@ -9,7 +9,7 @@ namespace TheatreBookingSystem_MVC.ViewModels
         public DateTime? Date { get; set; }
         public TimeSpan? Duration { get; set; }
         public int? RoomId { get; set; }
-        public int? AppUserId { get; set; }
+        public string? AppUserId { get; set; }
     }
 
 }
