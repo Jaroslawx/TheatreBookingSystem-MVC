@@ -65,3 +65,6 @@ Manage Performances: Add, edit, or delete performances from the admin panel.</li
 Manage Bookings: View and manage user bookings.</li><li>
 Manage Users: View and manage user accounts.</li>
 </ol>
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Jaroslawx/TheatreBookingSystem-MVC/blob/master/LICENSE) file for details.
