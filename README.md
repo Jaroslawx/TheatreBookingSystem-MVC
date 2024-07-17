@@ -35,7 +35,7 @@ git clone https://github.com/Jaroslawx/TheatreBookingSystem-MVC
 ```shell
 Update-Package -reinstall
 ```
-### 4. Update the connection string in appsettings.json to match your database and cloudinary configuration.
+### 4. Update the connection string and cloudinary settings in appsettings.json to match your database and cloudinary configuration.
 
 ### 5. Apply migrations to set up the database:
 ```shell
