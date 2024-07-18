@@ -278,7 +278,7 @@ namespace TheatreBookingSystem_MVC.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                string adminUserEmail = "xxxviroxxx@wp.pl";
+                string adminUserEmail = "admin@etickets.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
